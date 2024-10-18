@@ -1,0 +1,104 @@
+.tf-animated-fadeup .elementor-widget-container,
+.wrap-blog-article.blog-list .item article,
+.wrap-blog-article.blog-gird .item,
+.tf-posts .item,
+.tf-animated .item-animated,
+section .item-animated,
+.tf-animated-column-elementor .elementor-column,
+.tf-animated-item .elementor-widget-container {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
+}
+
+.tf-animated-item-right .elementor-widget-container {
+    opacity: 0;
+    -webkit-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+}
+
+.tf-animated-item-left .elementor-widget-container {
+    opacity: 0;
+    -webkit-transform: translate3d(-20px, 0, 0);
+    transform: translate3d(-20px, 0, 0);
+}
+
+.tf-animated-item-fade .elementor-widget-container {
+    opacity: 0;
+}
+
+.tf-animated-fadeup .elementor-widget-container,
+.wrap-blog-article.blog-list .item article.tfanimated,
+.wrap-blog-article.blog-gird .item.tfanimated,
+.tf-posts .item.tfanimated,
+.tf-animated .item-animated.tfanimated,
+section .item-animated.tfanimated,
+.tf-animated-item .elementor-widget-container.tfanimated,
+.tf-animated-item-left .elementor-widget-container.tfanimated,
+.tf-animated-item-right .elementor-widget-container.tfanimated,
+.tf-animated-item-fade .elementor-widget-container.tfanimated,
+.tf-animated-column-elementor .elementor-column.tfanimated,
+.tf-animated-twocolumn .item-animated.tfanimated.first,
+.tf-animated-twocolumn .item-animated.tfanimated.last {
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    -webkit-transition: opacity 0.8s linear, -webkit-transform 0.8s ease-in-out;
+    transition: opacity 0.8s linear, -webkit-transform 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out, opacity 0.8s linear;
+    transition: transform 0.8s ease-in-out, opacity 0.8s linear,
+        -webkit-transform 0.8s ease-in-out;
+}
+
+/* zonn blur */
+.tf-animated-item-zoom-slide .elementor-widget-container {
+    overflow: hidden;
+  }
+  
+  .tf-animated-item-zoom-slide .elementor-widget-container > * {
+    -webkit-clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
+    clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    -webkit-transition: -webkit-clip-path .8s ease-in-out .3s, -webkit-transform .8s ease-in-out 1.1s, -webkit-filter .5s ease-in-out 1.1s;
+    transition: -webkit-clip-path .8s ease-in-out .3s, -webkit-transform .8s ease-in-out 1.1s, -webkit-filter .5s ease-in-out 1.1s;
+    -o-transition: clip-path .8s ease-in-out .3s, transform .8s ease-in-out 1.1s, filter .5s ease-in-out 1.1s;
+    transition: clip-path .8s ease-in-out .3s, transform .8s ease-in-out 1.1s, filter .5s ease-in-out 1.1s;
+    transition: clip-path .8s ease-in-out .3s, transform .8s ease-in-out 1.1s, filter .5s ease-in-out 1.1s, -webkit-clip-path .8s ease-in-out .3s, -webkit-transform .8s ease-in-out 1.1s, -webkit-filter .5s ease-in-out 1.1s;
+    position: relative;
+  }
+  
+  .tf-animated-item-zoom-slide .elementor-widget-container.tfanimated > * {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+  }
+
+  /* Slide in Right */
+  .tf-animated-item-slide-right .elementor-widget-container {
+    overflow: hidden;
+  }
+  
+  .tf-animated-item-slide-right .elementor-widget-container > * {
+    -webkit-clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
+    clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
+    -webkit-transition: -webkit-clip-path .8s ease-in-out .3s, -webkit-transform .8s ease-in-out 1.1s, -webkit-filter .5s ease-in-out 1.1s;
+    transition: -webkit-clip-path .8s ease-in-out .3s, -webkit-transform .8s ease-in-out 1.1s, -webkit-filter .5s ease-in-out 1.1s;
+    -o-transition: clip-path .8s ease-in-out .3s, transform .8s ease-in-out 1.1s, filter .5s ease-in-out 1.1s;
+    transition: clip-path .8s ease-in-out .3s, transform .8s ease-in-out 1.1s, filter .5s ease-in-out 1.1s;
+    transition: clip-path .8s ease-in-out .3s, transform .8s ease-in-out 1.1s, filter .5s ease-in-out 1.1s, -webkit-clip-path .8s ease-in-out .3s, -webkit-transform .8s ease-in-out 1.1s, -webkit-filter .5s ease-in-out 1.1s;
+    position: relative;
+  }
+  
+  .tf-animated-item-slide-right .elementor-widget-container.tfanimated > *  {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }

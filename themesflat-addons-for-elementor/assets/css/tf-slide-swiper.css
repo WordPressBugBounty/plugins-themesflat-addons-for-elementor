@@ -1,0 +1,30 @@
+/* Slide Swiper 
+-------------------------------------------------------------- */
+.tf-slide-swiper .swiper-container-primary .swiper-slide {
+    cursor: grab;
+}
+
+.tf-slide-swiper .swiper-container-primary.swiper-container-vertical .swiper-slide {
+    height: auto !important;
+}
+
+.tf-slide-swiper .swiper-container-primary .swiper-slide .wrap-image {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* Arrows */
+.tf-slide-swiper .wrap-swiper-container {
+    position: relative;
+}
+.tf-slide-swiper .swiper-container-primary {
+    position: static;
+}
+
+.tf-slide-swiper .swiper-container-primary .swiper-button-arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:  none;
+}

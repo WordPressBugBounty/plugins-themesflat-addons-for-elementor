@@ -1,0 +1,39 @@
+.tf-accordion .accordion-title.icon_after .accordion-icon {
+    float: right;
+}
+
+.tf-accordion .tf-accordion-item:last-of-type {
+	margin-bottom: 0 !important;
+}
+
+.tf-accordion .accordion-title {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.accordion-icon-open,
+.tf-accordion-item.active .accordion-icon-close {
+	display: none;
+}
+
+.accordion-icon-close,
+.tf-accordion-item.active .accordion-icon-open {
+	display: block;
+}
+
+.tf-accordion .accordion-title > span.wrap-accordion-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion-title,
+.wrap-accordion-icon {
+	-webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;  
+}

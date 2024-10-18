@@ -1,0 +1,115 @@
+.tf-list-image {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+}
+.tf-list-image .box-item {
+    position: relative;
+    -webkit-animation: slide-har 30s linear infinite;
+    animation: slide-har 30s linear infinite;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+}
+
+.tf-list-image .box-item .item {
+    padding: 0 25px;
+    width: 250px;
+}
+
+.tf-list-image .box-item .item .image img {
+    width: 100%;
+    object-fit: cover;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.tf-list-image.hover-image .image img {
+    filter: grayscale(1);
+}
+
+.tf-list-image.hover-image .item:hover .image img {
+    filter: grayscale(0);
+}
+
+.tf-list-image.hover-stop:hover .box-item {
+    animation-play-state: paused;
+}
+
+@keyframes slide-har {
+    0% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+    100% {
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+}
+
+.tf-list-image .box-item .item.list-text {
+    width: unset;
+}
+
+.tf-list-image .list-text a {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29.05px;
+    width: max-content;
+    color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.tf-list-image .list-text a svg {
+    width: 24px;
+}
+
+.tf-list-image .list-text a .text {
+    position: relative;
+}
+
+.tf-list-image .list-text a .text::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    left: auto;
+    right: 0;
+    -webkit-transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    -o-transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    background-color: currentColor;
+}
+
+.tf-list-image .list-text a:hover .text::after {
+    width: 100%;
+    left: 0;
+    right: auto;
+}
+
+.tf-list-image .list-text .icon {
+    margin-right: 10px;
+}
+
+.tf-list-image .list-text .icon * {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.tf-list-image .list-text .icon svg path {
+    fill: #000;
+}
+
+.tf-list-image .list-text .icon i {
+    color: #000;
+}
