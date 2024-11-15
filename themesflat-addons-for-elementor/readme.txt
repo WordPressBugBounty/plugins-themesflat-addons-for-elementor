@@ -2,9 +2,9 @@
 Tags: addons, elementor, elementor addon, themesflat, widget
 Contributors: themesflatc2
 Requires at least: 4.9
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.2
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

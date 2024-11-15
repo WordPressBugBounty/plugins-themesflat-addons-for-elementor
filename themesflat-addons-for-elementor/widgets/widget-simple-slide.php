@@ -1119,7 +1119,7 @@ if(!class_exists('TFSlide_Widget_Free')){
 
 	        if ( $settings['animation_heading'] == 'type' ) {
 	        	foreach ( $settings['vegas_content_list'] as $itemcontent ){
-	                $fancy_text_heading .= $itemcontent['vegas_title_text'].',';                       
+	                $fancy_text_heading .= esc_attr($itemcontent['vegas_title_text']).',';                       
 	            }
 	        	$fancy_text_heading = substr( $fancy_text_heading, 0, -1 );
 	        	$heading_html = '<div class="wrap-heading">'.$prefix.'<div class="slide-fancy-text typed fancy-text-heading" data-fancy="'.$fancy_text_heading.'">
@@ -1129,11 +1129,11 @@ if(!class_exists('TFSlide_Widget_Free')){
 							    </div>'.$suffix.'</div>';
 	        }elseif( $settings['animation_heading'] == 'scroll' ) {
 	        	foreach ( $settings['vegas_content_list'] as $itemcontent ){
-	                $fancy_text_heading .= '<h2 class="heading">'.$itemcontent['vegas_title_text'].'</h2>';                      
+	                $fancy_text_heading .= '<h2 class="heading">'.esc_attr($itemcontent['vegas_title_text']).'</h2>';                      
 	            }
 	        	$heading_html = '<div class="wrap-heading">'.$prefix . '<div class="slide-fancy-text scroll fancy-text-heading"> '.$fancy_text_heading.' </div>' . $suffix.'</div>';
 	        }else {
-	        	$heading_html = '<div class="wrap-heading">'.$prefix.' <h2 class="heading"> '.wp_kses_post($settings['vegas_title_text']).' </h2> '.$suffix.'</div>';    
+	        	$heading_html = '<div class="wrap-heading">'.$prefix.' <h2 class="heading"> '.esc_attr($settings['vegas_title_text']).' </h2> '.$suffix.'</div>';    
 	        }   
 
 	        if ($settings['vegas_sub_title_text'] != '') {
