@@ -1,5 +1,5 @@
 /* Image Box  */
-.elementor-widget-tfimagebox .elementor-widget-container {
+.elementor-widget-tfimagebox {
     overflow: hidden;
 }
 .tf-imagebox .tf-button-container .tf-button {

@@ -583,7 +583,7 @@ class TFPriceTable_Widget_Free extends \Elementor\Widget_Base {
         'type' => Controls_Manager::DIMENSIONS,
         'size_units' => ['px', 'em', '%'],
         'selectors' => [
-          '{{WRAPPER}} > .elementor-widget-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          '{{WRAPPER}} ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
         ],
       ]
     );
@@ -619,7 +619,7 @@ class TFPriceTable_Widget_Free extends \Elementor\Widget_Base {
         ],
         'toggle' => false,
         'selectors' => [
-          '{{WRAPPER}} > .elementor-widget-container' => 'overflow: {{VALUE}}',
+          '{{WRAPPER}} ' => 'overflow: {{VALUE}}',
         ],
       ]
     );
@@ -628,7 +628,7 @@ class TFPriceTable_Widget_Free extends \Elementor\Widget_Base {
       Group_Control_Text_Shadow::get_type(),
       [
         'name' => 'general_shadow',
-        'selector' => '{{WRAPPER}} > .elementor-widget-container',
+        'selector' => '{{WRAPPER}} ',
       ]
     );
 

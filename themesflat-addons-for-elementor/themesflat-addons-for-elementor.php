@@ -4,7 +4,7 @@ Plugin Name: Themesflat Addons For Elementor
 Description: The theme's components
 Author: Themesflat
 Author URI: http://themesflat-addons.com/
-Version: 2.2.3
+Version: 2.2.4
 Text Domain: themesflat-addons-for-elementor
 Domain Path: /languages
 
@@ -139,69 +139,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         add_filter( 'single_template', [ $this, 'tf_header_footer_load_canvas_template' ] );
         add_action( 'wp', [ $this, 'hooks' ],100 ); 
         
-        // Hook Animation All Widget
-        add_action('elementor/element/before_section_end', function( $section, $section_id, $args ) {
-            if( $section->get_name() == 'common' && $section_id == 'section_effects' ){
-                
-                $section->add_control( 
-                    'heading_tfanimation',
-                    [
-                        'label' => esc_html__( 'TF Entrace Animation', 'themesflat-addons-for-elementor' ),
-                        'type' => \Elementor\Controls_Manager::HEADING,
-                        'separator' => 'before',
-                    ]
-                );
-
-                $section->add_control(
-                    'ti_parallax', [
-                        'label' => __( 'Choose Animation', 'themesflat-addons-for-elementor' ),
-                        'type' => \Elementor\Controls_Manager::SELECT,
-                        'default' => '',
-                        'options' => [
-                            '' => esc_html__( 'Default', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-fade' => esc_html__( 'Fade In', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item' => esc_html__( 'Fade In Up', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-left' => esc_html__( 'Fade In Left', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-right' => esc_html__( 'Fade In Right', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-zoom-slide' => esc_html__( 'Zoom Slide', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-slide-right' => esc_html__( 'Slide In Right', 'themesflat-addons-for-elementor' ),
-                        ],
-                        'prefix_class' => '',
-                    ]
-                );
-            }
-        }, 10, 3 );
-        // Hook Animation Container
-        add_action('elementor/element/before_section_end', function( $section, $section_id, $args ) {
-            if( $section->get_name() == 'container' && $section_id == 'section_effects' ){
-                
-                $section->add_control( 
-                    'heading_tfanimation',
-                    [
-                        'label' => esc_html__( 'TF Entrace Animation', 'themesflat-addons-for-elementor' ),
-                        'type' => \Elementor\Controls_Manager::HEADING,
-                        'separator' => 'before',
-                    ]
-                );
-
-                $section->add_control(
-                    'ti_parallax', [
-                        'label' => __( 'Choose Animation', 'themesflat-addons-for-elementor' ),
-                        'type' => \Elementor\Controls_Manager::SELECT,
-                        'default' => '',
-                        'options' => [
-                            '' => esc_html__( 'Default', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-fade' => esc_html__( 'Fade In', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item' => esc_html__( 'Fade In Up', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-left' => esc_html__( 'Fade In Left', 'themesflat-addons-for-elementor' ),
-                            'tf-animated-item-right' => esc_html__( 'Fade In Right', 'themesflat-addons-for-elementor' ),
-                        ],
-                        'prefix_class' => '',
-                    ]
-                );
-            }
-        }, 10, 3 );
-
+        
     }    
 
     public function tf_admin_notice_missing_main_plugin() {
@@ -643,9 +581,6 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         //  group image
         wp_register_style( 'tf-animation-item', plugins_url( '/assets/css/tf-animation-item.css', __FILE__ ) );     
 
-        // Entrace Animation
-        wp_enqueue_style( 'entrace-animation', plugins_url( '/assets/css/tf-entrace-animation.css', __FILE__ ) );
-
         // video
         wp_register_style( 'tf-video', plugins_url( '/assets/css/tf-video.css', __FILE__ ) );
 
@@ -776,7 +711,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         // group image
         wp_register_script( 'simple-parallax', plugins_url( '/assets/js/simple-parallax.min.js', __FILE__ ), [ 'jquery' ], false, true );
         wp_register_script( 'parallax-image', plugins_url( '/assets/js/tf-group-image.js', __FILE__ ), [ 'jquery' ], false, true );
-        wp_enqueue_script( 'tf-animated', plugins_url( '/assets/js/tf-animated.js', __FILE__ ), [ 'jquery' ], false, true );
+  
 
         // video
         wp_register_script( 'tf-video', plugins_url( '/assets/js/tf-video.js', __FILE__ ), [ 'jquery' ], false, true );
