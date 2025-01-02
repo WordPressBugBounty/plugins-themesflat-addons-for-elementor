@@ -1186,7 +1186,7 @@ if(!class_exists('TFSlide_Widget_Free')){
 	        	$delay = esc_attr($settings['delay']);
 	        }     
 
-	        $content_top = $settings['content_top'];  
+	        $content_top = esc_attr($settings['content_top']);  
 
 			if ( $settings['vegas_slideshow_style'] == 'slidehero' ) {
 	            echo sprintf(
@@ -1206,7 +1206,7 @@ if(!class_exists('TFSlide_Widget_Free')){
 	                $delay,
 	                $custom_height_tablet,
 	                $custom_height_mobile,
-	                $settings['vegas_slideshow_height']
+	                esc_attr($settings['vegas_slideshow_height'])
 	            );
 	        }
 
@@ -1228,7 +1228,7 @@ if(!class_exists('TFSlide_Widget_Free')){
 					$delay,
 					$custom_height_tablet,
 	                $custom_height_mobile,
-	                $settings['vegas_slideshow_height']
+	                esc_attr($settings['vegas_slideshow_height'])
 	        	);
 	        }
 

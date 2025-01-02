@@ -2573,12 +2573,12 @@ if(!class_exists('TFFlex_Slide_Widget_Free')){
 
 						$bg_images_size = 'cover';
 						if ( $settings['bg_images_size'] != '' ) {
-							$bg_images_size = $settings['bg_images_size'];
+							$bg_images_size = esc_attr($settings['bg_images_size']);
 						}
 
 						$bg_images_position = '50%';
 						if ( $settings['bg_images_position'] != '' ) {
-							$bg_images_position = $settings['bg_images_position'];
+							$bg_images_position = esc_attr($settings['bg_images_position']);
 						}
 						echo sprintf(
 								'<li class="item-slide">
@@ -2594,7 +2594,7 @@ if(!class_exists('TFFlex_Slide_Widget_Free')){
 				                    
 								</li>',
 								$settings['animation_images'],
-								$value['flexslider_image']['url'],
+								esc_url($value['flexslider_image']['url']),
 								$bg_images_size,
 								$bg_images_position,
 								$overlay_html,	
