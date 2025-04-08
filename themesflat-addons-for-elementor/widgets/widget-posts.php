@@ -3366,8 +3366,9 @@ class TFPosts_Widget_Free extends \Elementor\Widget_Base {
 				<?php while ( $query->have_posts() ) : $query->the_post();
 				$get_id_post_thumbnail = get_post_thumbnail_id();
 				$featured_image = '';
-				
-				$featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control_Image_Size::get_attachment_image_src( $get_id_post_thumbnail, 'thumbnail', $settings ));
+				if(!empty(\Elementor\Group_Control_Image_Size::get_attachment_image_src( $get_id_post_thumbnail, 'thumbnail', $settings ))) {
+					$featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control_Image_Size::get_attachment_image_src( $get_id_post_thumbnail, 'thumbnail', $settings ));
+				}
 				?>
 				<div class="column">
 					<div class="entry blog-post">

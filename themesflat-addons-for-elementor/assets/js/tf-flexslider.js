@@ -46,6 +46,14 @@
                 directionNav = $this.data('directionnav'),
                 prevText = $this.data('prevtext'),
                 nextText = $this.data('nexttext');
+                function escapeHtml(str) {
+                    return str.replace(/[&<>"'`=\/]/g, function (s) {
+                        return '&#' + s.charCodeAt(0) + ';';
+                    });
+                }
+                
+                prevText = escapeHtml(prevText);
+                nextText = escapeHtml(nextText);
             $this.flexslider({
                 animation: 'fade',
                 slideshow: autoplay,

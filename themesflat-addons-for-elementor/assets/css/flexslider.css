@@ -95,14 +95,13 @@ html[xmlns] .slides {display: block;}
     transform: translateX(-50%);
     bottom: 27px;
     text-align: center;
-    display: flex;
 }
 
 .flexslider .flex-control-nav li {
     margin: 0 3px;
     display: inline-block;
     zoom: 1;
-    display: inline;
+    *display: inline;
 }
 
 .flexslider .flex-control-nav li a {
