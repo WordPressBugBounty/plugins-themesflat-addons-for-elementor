@@ -4,13 +4,13 @@ Plugin Name: Themesflat Addons For Elementor
 Description: The theme's components
 Author: Themesflat
 Author URI: http://themesflat-addons.com/
-Version: 2.2.6
+Version: 2.2.7
 Text Domain: themesflat-addons-for-elementor
 Domain Path: /languages
 
-WC tested up to: 9.7
-Elementor tested up to: 3.28
-Elementor Pro tested up to: 3.28
+WC tested up to: 9.9
+Elementor tested up to: 3.29
+Elementor Pro tested up to: 3.29
 
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -657,9 +657,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
 
     public function widget_scripts() {
         wp_enqueue_script('jquery');
-        if ( did_action( 'elementor/loaded' ) ) {
-            wp_enqueue_script('tf-swiper', ELEMENTOR_ASSETS_URL . 'lib/swiper/swiper.min.js', __FILE__);
-        } 
+  
         //3rd Plugin
         wp_register_script( 'owl-carousel', plugins_url( '/assets/js/owl.carousel.min.js', __FILE__ ), [ 'jquery' ], false, true );
         wp_register_script( 'imagesloaded-pkgd', plugins_url( '/assets/js/imagesloaded.pkgd.min.js', __FILE__ ), [ 'jquery' ], false, true );
@@ -668,7 +666,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         wp_register_script( 'slide-vegas', plugins_url( '/assets/js/vegas.js', __FILE__ ), [ 'jquery' ], false, true );
         wp_register_script( 'slide-ytplayer', plugins_url( '/assets/js/ytplayer.js', __FILE__ ), [ 'jquery' ], false, true );
         wp_register_script( 'slide-typed', plugins_url( '/assets/js/typed.js', __FILE__ ), [ 'jquery' ], false, true );
-
+        wp_enqueue_script('tf-swiper', plugins_url( '/assets/js/swiper.min.js', __FILE__ ), [ 'jquery' ], false, true );
         // flex-slider (E Slider)
         wp_register_script( 'tf-flexslider', plugins_url( '/assets/js/jquery.flexslider-min.js', __FILE__ ), [ 'jquery' ], false, true );
         wp_register_script( 'tf-flex-slider', plugins_url( '/assets/js/tf-flexslider.js', __FILE__ ), [ 'jquery' ], false, true );

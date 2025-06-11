@@ -991,7 +991,7 @@ class TFSlideSwiper_Widget_Free extends \Elementor\Widget_Base {
 		<div <?php echo $this->get_render_attribute_string('tf_slide_swiper'); ?>>
 			<div class="wrap-swiper-container">
 				<!-- Slider container -->
-				<div class="swiper-container swiper-container-primary">
+				<div class="swiper swiper-container swiper-container-primary">
 					<!-- Swiper wrapper -->
 					<div class="swiper-wrapper">
 						<!-- Slides -->

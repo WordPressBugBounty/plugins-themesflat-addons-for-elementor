@@ -28,3 +28,8 @@
     align-items: center;
     background-image:  none;
 }
+
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after,
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    display: none;
+}
