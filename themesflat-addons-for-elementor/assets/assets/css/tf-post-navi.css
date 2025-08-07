@@ -1,0 +1,57 @@
+
+/* Post Navigation
+-------------------------------------------------------------- */
+.tf-post-navigation .tf-wrap-post-navigation {
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.tf-post-navigation .tf-wrap-post-navigation .tf-post-navigation-link {
+    width: calc(50% - (1px / 2));
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}   
+
+.tf-post-navigation .tf-wrap-post-navigation .tf-post-navigation-next {
+    text-align: right;
+}
+
+.tf-post-navigation .tf-wrap-post-navigation .tf-post-navigation-link > a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+.tf-post-navigation .tf-wrap-post-navigation .tf-post-navigation-link.tf-post-navigation-next > a {
+    float: right;
+}
+
+.tf-post-navigation .tf-wrap-post-navigation span.tf-post-navigation-link-prev, 
+.tf-post-navigation .tf-wrap-post-navigation span.tf-post-navigation-link-next {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.tf-post-navigation .tf-wrap-post-navigation .tf-post-navigation-separator {
+    text-align: center;
+}
+
+.tf-post-navigation .tf-wrap-post-navigation .tf-post-navigation-separator .navigation-separator {
+    height: 100%;
+    width: 1px;
+    margin: 0 auto;
+    background-color: #d4d4d4;
+}

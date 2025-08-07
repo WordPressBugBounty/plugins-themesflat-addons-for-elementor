@@ -3763,12 +3763,12 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 								                                <?php 
 								                                if ($settings['product_sale'] == 'yes') {
 									                                if ($settings['custom_sale'] == 'yes') {
-									                                	echo get_sale_price($settings['product_sale'] ,$settings['sale_style'], $settings['enter_sale_text'], $settings['prefix_sale_percent']);
+									                                	echo get_sale_price(esc_attr($settings['product_sale']) ,esc_attr($settings['sale_style']), esc_attr($settings['enter_sale_text']), esc_attr($settings['prefix_sale_percent']));
 									                                }else {
 									                                	woocommerce_show_product_loop_sale_flash();
 									                                }
 									                            }
-								                                echo get_flash_sale($settings['badge']);
+								                                echo get_flash_sale(esc_attr($settings['badge']));
 								                                
 								                                $get_post_thumbnail = get_post_thumbnail_id();
 								                                if ( !empty( wc_get_product()->get_gallery_image_ids() ) ){
@@ -3890,12 +3890,12 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 									                                <?php 
 									                                if ($settings['product_sale'] == 'yes') {
 										                                if ($settings['custom_sale'] == 'yes') {
-										                                	echo get_sale_price($settings['product_sale'] ,$settings['sale_style'], $settings['enter_sale_text'], $settings['prefix_sale_percent']);
+										                                	echo get_sale_price(esc_attr($settings['product_sale']) ,esc_attr($settings['sale_style']), esc_attr($settings['enter_sale_text']), esc_attr($settings['prefix_sale_percent']));
 										                                }else {
 										                                	woocommerce_show_product_loop_sale_flash();
 										                                }
 										                            }
-									                                echo get_flash_sale($settings['badge']);
+									                                echo get_flash_sale(esc_attr($settings['badge']));
 									                                
 									                                $get_post_thumbnail = get_post_thumbnail_id();
 									                                if ( !empty( wc_get_product()->get_gallery_image_ids() ) ){
@@ -4016,12 +4016,12 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 								                                <?php 
 								                                if ($settings['product_sale'] == 'yes') {
 									                                if ($settings['custom_sale'] == 'yes') {
-									                                	echo get_sale_price($settings['product_sale'] ,$settings['sale_style'], $settings['enter_sale_text'], $settings['prefix_sale_percent']);
+									                                	echo get_sale_price(esc_attr($settings['product_sale']) ,esc_attr($settings['sale_style']), esc_attr($settings['enter_sale_text']), esc_attr($settings['prefix_sale_percent']));
 									                                }else {
 									                                	woocommerce_show_product_loop_sale_flash();
 									                                }
 									                            }
-								                                echo get_flash_sale($settings['badge']);
+								                                echo get_flash_sale(esc_attr($settings['badge']));
 								                                
 								                                $get_post_thumbnail = get_post_thumbnail_id();
 								                                if ( !empty( wc_get_product()->get_gallery_image_ids() ) ){
@@ -4126,12 +4126,12 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 								                                <?php 
 								                                if ($settings['product_sale'] == 'yes') {
 									                                if ($settings['custom_sale'] == 'yes') {
-									                                	echo get_sale_price($settings['product_sale'] ,$settings['sale_style'], $settings['enter_sale_text'], $settings['prefix_sale_percent']);
+									                                	echo get_sale_price(esc_attr($settings['product_sale']) ,esc_attr($settings['sale_style']), esc_attr($settings['enter_sale_text']), esc_attr($settings['prefix_sale_percent']));
 									                                }else {
 									                                	woocommerce_show_product_loop_sale_flash();
 									                                }
 									                            }
-								                                echo get_flash_sale($settings['badge']);
+								                                echo get_flash_sale(esc_attr(($settings['badge'])));
 								                                
 								                                $get_post_thumbnail = get_post_thumbnail_id();
 								                                if ( !empty( wc_get_product()->get_gallery_image_ids() ) ){
@@ -4256,12 +4256,12 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 										                                <?php 
 										                                if ($settings['product_sale'] == 'yes') {
 											                                if ($settings['custom_sale'] == 'yes') {
-											                                	echo get_sale_price($settings['product_sale'] ,$settings['sale_style'], $settings['enter_sale_text'], $settings['prefix_sale_percent']);
+											                                	echo get_sale_price(esc_attr($settings['product_sale']) ,esc_attr($settings['sale_style']), esc_attr($settings['enter_sale_text']), esc_attr($settings['prefix_sale_percent']));
 											                                }else {
 											                                	woocommerce_show_product_loop_sale_flash();
 											                                }
 											                            }
-										                                echo get_flash_sale($settings['badge']);
+										                                echo get_flash_sale(esc_attr($settings['badge']));
 										                                
 										                                $get_post_thumbnail = get_post_thumbnail_id();
 										                                if ( !empty( wc_get_product()->get_gallery_image_ids() ) ){
@@ -4379,12 +4379,12 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 											                                <?php 
 											                                if ($settings['product_sale'] == 'yes') {
 												                                if ($settings['custom_sale'] == 'yes') {
-												                                	echo get_sale_price($settings['product_sale'] ,$settings['sale_style'], $settings['enter_sale_text'], $settings['prefix_sale_percent']);
+												                                	echo get_sale_price(esc_attr($settings['product_sale']) ,esc_attr($settings['sale_style']), esc_attr($settings['enter_sale_text']), esc_attr($settings['prefix_sale_percent']));
 												                                }else {
 												                                	woocommerce_show_product_loop_sale_flash();
 												                                }
 												                            }
-											                                echo get_flash_sale($settings['badge']);
+											                                echo get_flash_sale(esc_attr($settings['badge']));
 											                                
 											                                $get_post_thumbnail = get_post_thumbnail_id();
 											                                if ( !empty( wc_get_product()->get_gallery_image_ids() ) ){
@@ -4489,12 +4489,12 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 					                                <?php 
 					                                if ($settings['product_sale'] == 'yes') {
 						                                if ($settings['custom_sale'] == 'yes') {
-						                                	echo get_sale_price($settings['product_sale'] ,$settings['sale_style'], $settings['enter_sale_text'], $settings['prefix_sale_percent']);
+						                                	echo get_sale_price(esc_attr($settings['product_sale']) ,esc_attr($settings['sale_style']), esc_attr($settings['enter_sale_text']), esc_attr($settings['prefix_sale_percent']));
 						                                }else {
 						                                	woocommerce_show_product_loop_sale_flash();
 						                                }
 						                            }
-					                                echo get_flash_sale($settings['badge']);
+					                                echo get_flash_sale(esc_attr($settings['badge']));
 					                                
 					                                $get_post_thumbnail = get_post_thumbnail_id();
 					                                if ( !empty( wc_get_product()->get_gallery_image_ids() ) ){

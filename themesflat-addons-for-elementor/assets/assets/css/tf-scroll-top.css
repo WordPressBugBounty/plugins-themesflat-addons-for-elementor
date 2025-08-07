@@ -1,0 +1,36 @@
+/* Go top
+-----------------------------------------------------------------  */
+#tf-scroll-top .inner-scroll-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#tf-scroll-top.scroll-and-show .inner-scroll-top {
+    position: fixed !important;               
+    text-align: center;        
+    visibility: hidden;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    z-index: 99999;
+    cursor: pointer;
+    overflow: hidden;        
+}
+
+#tf-scroll-top.scroll-and-show.show .inner-scroll-top {
+    filter: alpha(opacity=100);
+    opacity: 1;
+    visibility: visible;
+}
+
+#tf-scroll-top .icon-scroll-top {
+    line-height: 1;
+}
+
+#tf-scroll-top .inner-scroll-top,
+#tf-scroll-top .inner-scroll-top .icon-scroll-top svg {
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+}

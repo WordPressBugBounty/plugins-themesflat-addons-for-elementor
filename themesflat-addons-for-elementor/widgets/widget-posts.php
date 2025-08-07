@@ -3441,7 +3441,7 @@ class TFPosts_Widget_Free extends \Elementor\Widget_Base {
 										<?php endif; ?>
 
 										<?php if ( $settings['show_excerpt'] == 'yes' ): ?>
-											<div class="content-post"><?php echo wp_trim_words( get_the_content(), $settings['excerpt_lenght'], '&hellip;' ); ?></div>
+											<div class="content-post"><?php echo wp_trim_words( get_the_content(), esc_attr($settings['excerpt_lenght']), '&hellip;' ); ?></div>
 										<?php endif; ?>
 										
 										<?php if ( $settings['show_button'] == 'yes' ): ?>
@@ -3663,7 +3663,7 @@ class TFPosts_Widget_Free extends \Elementor\Widget_Base {
 										<?php endif; ?>
 
 										<?php if ( $settings['show_excerpt'] == 'yes' ): ?>
-											<div class="content-post"><?php echo wp_trim_words( get_the_content(), $settings['excerpt_lenght'], '&hellip;' ); ?></div>
+											<div class="content-post"><?php echo wp_trim_words( get_the_content(), esc_attr($settings['excerpt_lenght']), '&hellip;' ); ?></div>
 										<?php endif; ?>
 										
 										<?php if ( $settings['show_button'] == 'yes' ): ?>
@@ -3825,7 +3825,7 @@ class TFPosts_Widget_Free extends \Elementor\Widget_Base {
 								<?php endif; ?>
 
 								<?php if ( $settings['show_excerpt'] == 'yes' ): ?>
-									<div class="content-post"><?php echo wp_trim_words( get_the_content(), $settings['excerpt_lenght'], '&hellip;' ); ?></div>
+									<div class="content-post"><?php echo wp_trim_words( get_the_content(), esc_attr($settings['excerpt_lenght']), '&hellip;' ); ?></div>
 								<?php endif; ?>
 								
 								<?php if ( $settings['show_button'] == 'yes' ): ?>

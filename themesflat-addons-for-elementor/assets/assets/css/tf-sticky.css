@@ -1,0 +1,36 @@
+/* Sticky
+-----------------------------------------------------------------  */
+.tf-sticky-yes {
+    -webkit-transition: all 0.3s ease-in-out !important;
+    -moz-transition: all 0.3s ease-in-out !important;
+    -ms-transition: all 0.3s ease-in-out !important;
+    -o-transition: all 0.3s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.tf-element-sticky {
+    position: fixed !important;
+    top: 0;
+    width: 100%;  
+    z-index: 9999; 
+}
+
+.admin-bar .tf-element-sticky {
+    top: 32px;
+}
+
+.tf-element-sticky .elementor-background-overlay {
+    display: none;
+}
+
+@media (max-width: 782px) {
+    .admin-bar .tf-element-sticky {
+        top: 46px;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-bar .tf-element-sticky {
+        top: 0px;
+    }
+}

@@ -1,0 +1,18 @@
+/* Wishlist Count  */
+.tf-wishlist-count .inner-wishlist-count {
+    display: inline-block;
+    position: relative;
+}
+
+.tf-wishlist-count .inner-wishlist-count span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tf-wishlist-count .wishlist-counter {
+    position: absolute;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}

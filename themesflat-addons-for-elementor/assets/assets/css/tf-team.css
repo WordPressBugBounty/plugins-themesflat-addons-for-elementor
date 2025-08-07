@@ -1,0 +1,259 @@
+/* Team  */
+
+.tf-team .team-image {
+    overflow: hidden;
+}
+
+.tf-team.style-1 .team-image,
+.tf-team.style-2 .team-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.tf-team .team-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.tf-team .team-name {
+    margin-top: 0;
+}
+
+.tf-team a,
+.tf-team.style-2 .team-content,
+.tf-team .team-image .image-overlay,
+.tf-team.style-1 .team-image .team-box-social,
+.tf-team.style-3 .team-image .team-box-social {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.tf-team .team-box-social {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tf-team .team-box-social li {
+    display: inline-block;
+}
+
+.tf-team .team-box-social a {
+    text-align: center;
+    display: inline-block;
+    line-height: 1;
+}
+
+/*.tf-team .team-box-social a i {
+    min-width: 1em;
+    min-height: 1em;
+    font-family: "FontAwesome";
+    font-weight: inherit;
+}*/
+
+.tf-team.style-1 .team-content {
+    position: relative;
+}
+
+.tf-team.style-2 {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+.tf-team.style-2 .team-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    opacity: 0;
+    visibility: hidden;
+    display: grid;
+    align-content: center;
+}
+
+.tf-team.style-2:hover .team-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tf-team.style-2 .team-content.default {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tf-team.style-2 .team-content.fade-in-up {
+    top: 100%;
+}
+
+.tf-team.style-2:hover .team-content.fade-in-up {
+    top: 0%;
+}
+
+.tf-team.style-2 .team-content.fade-in-down {
+    top: -100%;
+}
+
+.tf-team.style-2:hover .team-content.fade-in-down {
+    top: 0%;
+}
+
+.tf-team.style-2 .team-content.fade-in-left {
+    left: -100%;
+}
+
+.tf-team.style-2:hover .team-content.fade-in-left {
+    left: 0%;
+}
+
+.tf-team.style-2 .team-content.fade-in-right {
+    left: 100%;
+}
+
+.tf-team.style-2:hover .team-content.fade-in-right {
+    left: 0%;
+}
+
+.tf-team.style-3 {
+    display: flex;
+}
+
+.tf-team.style-3 .team-image {
+    width: 50%;
+}
+
+.tf-team.style-3 .team-content {
+    padding: 30px;
+    width: 50%;
+}
+
+.tf-team .team-image {
+    position: relative;
+}
+
+.tf-team .team-image .image-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tf-team .team-image .image-overlay.default {
+    top: 0;
+    left: 0;
+    visibility: visible;
+    opacity: 1;
+}
+
+.tf-team .team-image .image-overlay.fade-in {
+    top: 0;
+    left: 0;
+}
+
+.tf-team:hover .team-image .image-overlay.fade-in {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tf-team .team-image .image-overlay.fade-in-left {
+    top: 0;
+    right: 100%;
+}
+
+.tf-team:hover .team-image .image-overlay.fade-in-left {
+    visibility: visible;
+    opacity: 1;
+    right: 0;
+}
+
+.tf-team .team-image .image-overlay.fade-in-right {
+    top: 0;
+    left: 100%;
+}
+
+.tf-team:hover .team-image .image-overlay.fade-in-right {
+    visibility: visible;
+    opacity: 1;
+    left: 0;
+}
+
+.tf-team .team-image .image-overlay.fade-in-down {
+    bottom: 100%;
+    left: 0;
+}
+
+.tf-team:hover .team-image .image-overlay.fade-in-down {
+    visibility: visible;
+    opacity: 1;
+    bottom: 0;
+}
+
+.tf-team .team-image .image-overlay.fade-in-up {
+    top: 100%;
+    left: 0;
+}
+
+.tf-team:hover .team-image .image-overlay.fade-in-up {
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+}
+
+.tf-team .team-image .team-box-social.vertical li {
+    display: inherit;
+}
+
+.tf-team .team-image .team-box-social.vertical a {
+    display: inline-block;
+}
+
+.tf-team.style-1 .team-image .team-box-social,
+.tf-team.style-3 .team-image .team-box-social {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tf-team.style-1:hover .team-image .team-box-social,
+.tf-team.style-3:hover .team-image .team-box-social {
+    top: 50%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.tf-team.style-1 .team-image .team-box-social.horizontal {
+    width: 100%;
+}
+
+.tf-team.style-1 .team-image .team-box-social.vertical.left,
+.tf-team.style-3 .team-image .team-box-social.vertical.left {
+    left: 10px;
+    transform: translate(0%, -50%);
+}
+
+.tf-team.style-1 .team-image .team-box-social.vertical.right,
+.tf-team.style-3 .team-image .team-box-social.vertical.right {
+    left: unset;
+    right: 10px;
+    transform: translate(0%, -50%);
+}
+
+@media (max-width: 767px) {
+    .tf-team.style-3 {
+        display: block;
+    }
+    
+    .tf-team.style-3 .team-content {
+        width: 100% !important;
+    }
+}

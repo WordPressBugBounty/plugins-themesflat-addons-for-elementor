@@ -1,0 +1,230 @@
+
+/* FelxSlider
+-------------------------------------------------------------- */
+.flexslider ul li .bgimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+}
+.flexslider .slides img.bg_shape {
+    position: absolute;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+}
+
+.flexslider li .button-one,
+.flexslider li .button-two {
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.flexslider .button-group {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.flexslider .button-group > li {
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.flexslider .flex-direction-nav a {
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.button-group a.button-one {
+    font-family: "Roboto", Sans-serif;
+    font-weight: 400;
+    padding: 19px 38px 19px 43px;
+    border-radius: 50px 50px 50px 50px;
+    margin: 0px 9px 0px 0px;
+    border: 2px solid;
+}
+
+.button-group a.button-one:hover {
+    background-color: #000000;
+}
+
+.button-group a.button-one svg {
+    height: auto;
+    position: unset;
+    top: unset;
+    left: unset;
+    display: inline-block;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.button-group a.button-one .btn-icon-left,
+.button-group a.button-one .btn-icon-right {
+    vertical-align: middle;
+}
+
+.flexslider .flex_caption { 
+    width: 100%; 
+    display: block; 
+}
+
+.flex_caption.container {
+    margin: 0 auto;
+}
+
+.flexslider .item-slide .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.vegas-content a.button-one svg {
+    height: auto;
+    position: unset;
+    top: unset;
+    left: unset;
+    display: inline-block;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.vegas-content .heading:before,
+.vegas-content h1:before,
+.vegas-content h2:before,
+.flexslider h1:before,
+.flexslider h2:before {
+    display: none !important;
+}
+
+@media only screen and (max-width: 991px) {
+    .flexslider .flex-direction-nav {
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+    }
+
+    .flexslider:hover .flex-direction-nav {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .flexslider .flex-direction-nav {
+        display: none;
+    }
+    .flexslider .flex_caption {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+
+@media (min-width: 576px) {
+.flex_caption.container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+.flex_caption.container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+    .flex_caption.container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+    .flex_caption.container {
+    max-width: 1140px;
+  }
+}
+
+/* Animation
+-------------------------------------------------------------- */
+.ghostIn, .fromTop, .fromRight, .fromBottom, .fromLeft {opacity: 0; transition: all 0.7s ; -webkit-transition: all 0.7s ;}
+
+.flexslider li.flex-active-slide .ghostIn {opacity: 1;}
+
+.flexslider li .fromTop {transform: translateY(-100%); -o-transform: translateY(-100%); -ms-transform: translateY(-100%); -webkit-transform: translateY(-100%);}
+.flexslider li.flex-active-slide .fromTop {opacity: 1; transform: translateY(0); -o-transform: translateY(0%); -ms-transform: translateY(0); -webkit-transform: translateY(0);}
+
+.flexslider li .fromBottom {transform: translateY(100%); -o-transform: translateY(100%); -ms-transform: translateY(100%); -webkit-transform: translateY(100%);}
+.flexslider li.flex-active-slide .fromBottom {opacity: 1; transform: translateY(0); -o-transform: translateY(0); -ms-transform: translateY(0); -webkit-transform: translateY(0);}
+
+.flexslider li .fromLeft {transform: translateX(-100%); -o-transform: translateX(-100%); -ms-transform: translateX(-100%); -webkit-transform: translateX(-100%);}
+.flexslider li.flex-active-slide .fromLeft {opacity: 1; transform: translateX(0); -o-transform: translateX(0); -ms-transform: translateX(0); -webkit-transform: translateX(0);}
+
+.flexslider li .fromRight {transform: translateX(100%); -o-transform: translateX(100%); -ms-transform: translateX(100%); -webkit-transform: translateX(100%);}
+.flexslider li.flex-active-slide .fromRight {opacity: 1; transform: translateX(0); -o-transform: translateX(0); -ms-transform: translateX(0); -webkit-transform: translateX(0);}
+
+
+/* Animation Image*/
+.bg_zoomIn, .bg_zoomOut { opacity: 0; transition: transform 5s ease-in-out; }
+
+.flexslider li.flex-active-slide .bg_zoomIn { opacity: 1; transform: scale(1.2); }
+
+.bg_zoomOut { transform: scale(1.2); }
+.flexslider li.flex-active-slide .bg_zoomOut { opacity: 1; transform: scale(1); }
+
+.captionDelay1 {transition-delay: 0.1s; -webkit-transition-delay: 0.1s;}
+.captionDelay2 {transition-delay: 0.2s; -webkit-transition-delay: 0.2s;}
+.captionDelay3 {transition-delay: 0.3s; -webkit-transition-delay: 0.3s;}
+.captionDelay4 {transition-delay: 0.4s; -webkit-transition-delay: 0.4s;}
+.captionDelay5 {transition-delay: 0.5s; -webkit-transition-delay: 0.5s;}
+.captionDelay6 {transition-delay: 0.6s; -webkit-transition-delay: 0.6s;}
+.captionDelay7 {transition-delay: 0.7s; -webkit-transition-delay: 0.7s;}
+.captionDelay8 {transition-delay: 0.8s; -webkit-transition-delay: 0.8s;}
+.captionDelay9 {transition-delay: 0.9s; -webkit-transition-delay: 0.9s;}
+.captionDelay10 {transition-delay: 1s; -webkit-transition-delay: 1s;}
+.captionDelay11 {transition-delay: 1.1s; -webkit-transition-delay: 1.1s;}
+.captionDelay12 {transition-delay: 1.2s; -webkit-transition-delay: 1.2s;}
+.captionDelay13 {transition-delay: 1.3s; -webkit-transition-delay: 1.3s;}
+.captionDelay14 {transition-delay: 1.4s; -webkit-transition-delay: 1.4s;}
+.captionDelay15 {transition-delay: 1.5s; -webkit-transition-delay: 1.5s;}
+.captionDelay16 {transition-delay: 1.6s; -webkit-transition-delay: 1.6s;}
+.captionDelay17 {transition-delay: 1.7s; -webkit-transition-delay: 1.7s;}
+.captionDelay18 {transition-delay: 1.8s; -webkit-transition-delay: 1.8s;}
+.captionDelay19 {transition-delay: 1.9s; -webkit-transition-delay: 1.9s;}
+.captionDelay20 {transition-delay: 2s; -webkit-transition-delay: 2s;}
+
+.vivify.captionDelay1 {animation-duration: 0.1s !important; -webkit-animation-duration: 0.1s !important;}
+.vivify.captionDelay2 {animation-duration: 0.2s !important; -webkit-animation-duration: 0.2s !important;}
+.vivify.captionDelay3 {animation-duration: 0.3s !important; -webkit-animation-duration: 0.3s !important;}
+.vivify.captionDelay4 {animation-duration: 0.4s !important; -webkit-animation-duration: 0.4s !important;}
+.vivify.captionDelay5 {animation-duration: 0.5s !important; -webkit-animation-duration: 0.5s !important;}
+.vivify.captionDelay6 {animation-duration: 0.6s !important; -webkit-animation-duration: 0.6s !important;}
+.vivify.captionDelay7 {animation-duration: 0.7s !important; -webkit-animation-duration: 0.7s !important;}
+.vivify.captionDelay8 {animation-duration: 0.8s !important; -webkit-animation-duration: 0.8s !important;}
+.vivify.captionDelay9 {animation-duration: 0.9s !important; -webkit-animation-duration: 0.9s !important;}
+.vivify.captionDelay10 {animation-duration: 1s !important; -webkit-animation-duration: 1s !important;}
+.vivify.captionDelay11 {animation-duration: 1.1s !important; -webkit-animation-duration: 1.1s !important;}
+.vivify.captionDelay12 {animation-duration: 1.2s !important; -webkit-animation-duration: 1.2s !important;}
+.vivify.captionDelay13 {animation-duration: 1.3s !important; -webkit-animation-duration: 1.3s !important;}
+.vivify.captionDelay14 {animation-duration: 1.4s !important; -webkit-animation-duration: 1.4s !important;}
+.vivify.captionDelay15 {animation-duration: 1.5s !important; -webkit-animation-duration: 1.5s !important;}
+.vivify.captionDelay16 {animation-duration: 1.6s !important; -webkit-animation-duration: 1.6s !important;}
+.vivify.captionDelay17 {animation-duration: 1.7s !important; -webkit-animation-duration: 1.7s !important;}
+.vivify.captionDelay18 {animation-duration: 1.8s !important; -webkit-animation-duration: 1.8s !important;}
+.vivify.captionDelay19 {animation-duration: 1.9s !important; -webkit-animation-duration: 1.9s !important;}
+.vivify.captionDelay20 {animation-duration: 2s !important; -webkit-animation-duration: 2s !important;}

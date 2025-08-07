@@ -2615,7 +2615,7 @@ class TFPriceTable_Widget_Free extends \Elementor\Widget_Base {
 
     <?php if ('after_header' == $settings['price_position']) : ?>
     <?php if ($settings['show_pricing']) : ?>
-      <div class="ptable-price<?php echo $settings['show_two_pricing'] == "true" ? " ptable-price--twoLine" : ""; ?>">
+      <div class="ptable-price<?php echo esc_attr($settings['show_two_pricing']) == "true" ? " ptable-price--twoLine" : ""; ?>">
         <div class="ptable-price-tag">
           <?php if ($settings['original_price']): ?>
 
@@ -2729,7 +2729,7 @@ class TFPriceTable_Widget_Free extends \Elementor\Widget_Base {
 
     <?php if ('before_button' == $settings['price_position']) : ?>
     <?php if ($settings['show_pricing']) : ?>
-      <div class="ptable-price<?php echo $settings['show_two_pricing'] == "true" ? " ptable-price--twoLine" : ""; ?>">
+      <div class="ptable-price<?php echo esc_attr($settings['show_two_pricing']) == "true" ? " ptable-price--twoLine" : ""; ?>">
         <div class="ptable-price-tag">
           <?php if ($settings['original_price']): ?>
             <div class="ptable-original-price">

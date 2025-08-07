@@ -1386,7 +1386,7 @@ class TFIconBox_Widget_Free extends \Elementor\Widget_Base {
 
 					<div class="content">
 						<<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?> class="title"><?php echo esc_attr($settings['title_text']); ?></<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?>>
-						<?php echo sprintf('<div class="description">%s</div>', $settings['description_text']); ?>
+						<?php echo sprintf('<div class="description">%s</div>', esc_html($settings['description_text'])); ?>
 						
 						<?php if ( $settings['show_button'] == 'yes' ): 
 
@@ -1461,7 +1461,7 @@ class TFIconBox_Widget_Free extends \Elementor\Widget_Base {
 
 					<div class="content">
 						<<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?> class="title"><?php echo esc_attr($settings['title_text']); ?></<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?>>
-						<?php echo sprintf('<div class="description">%s</div>', $settings['description_text']); ?>
+						<?php echo sprintf('<div class="description">%s</div>', esc_html($settings['description_text'])); ?>
 						
 						<?php if ( $settings['show_button'] == 'yes' ): 
 							
@@ -1536,7 +1536,7 @@ class TFIconBox_Widget_Free extends \Elementor\Widget_Base {
 
 				<div class="content">
 					<<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?> class="title"><?php echo esc_attr($settings['title_text']); ?></<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?>>
-					<?php echo sprintf('<div class="description">%s</div>', $settings['description_text']); ?>
+					<?php echo sprintf('<div class="description">%s</div>', esc_html($settings['description_text'])); ?>
 					
 					<?php if ( $settings['show_button'] == 'yes' ): 
 						$this->add_render_attribute('button_link', 'class','tf-button '.esc_attr($settings['button_icon_position']).' '.esc_attr($btn_animation));

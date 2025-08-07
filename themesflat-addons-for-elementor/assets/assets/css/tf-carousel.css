@@ -1,0 +1,71 @@
+
+/* Carousel Box */
+.tf-carousel-box .owl-nav .owl-prev,
+.tf-carousel-box .owl-nav .owl-next {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.tf-carousel-box .owl-nav .owl-next {
+    left: unset;
+    right: 0;
+}
+
+.tf-carousel-box .owl-nav .owl-prev.disabled,
+.tf-carousel-box .owl-nav .owl-next.disabled {
+    display: none !important;
+}
+
+.tf-carousel-box.no-arrow .owl-nav .owl-prev,
+.tf-carousel-box.no-arrow .owl-nav .owl-next {
+    display: none;
+}
+
+.tf-carousel-box.has-arrow .owl-nav .owl-prev,
+.tf-carousel-box.has-arrow .owl-nav .owl-next {
+    display: block;
+}
+
+.tf-carousel-box .owl-dots {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tf-carousel-box .owl-dots .owl-dot {
+    width: 10px;
+    height: 10px;
+    background: #0080f0;
+    display: inline-block;
+    margin: 0 5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.tf-carousel-box.has-carousel.no-bullets .owl-dots,
+.tf-carousel-box.no-bullets .owl-dots {
+    display: none;
+}
+
+.tf-carousel-box.has-carousel.has-bullets .owl-dots {
+    display: block;
+}

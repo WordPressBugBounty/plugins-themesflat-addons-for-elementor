@@ -1,0 +1,7 @@
+.tf-progress-bar { position: relative; }
+.tf-progress-bar .title,
+.tf-progress-bar .perc { margin: 0; position: relative; display: flex; justify-content: space-between; align-items: center; }
+.tf-progress-bar.inner .perc { position: relative; width: 100% !important; }
+.tf-progress-bar .progress-animate { width: 0; height: 100%; -webkit-transition: width 1s ease; -moz-transition: width 1s ease; transition: width 1s ease; }
+.tf-progress-bar .progress-bar { width: 100%; margin-top: 10px; }
+.tf-progress-bar .perc { width: 0; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease; }

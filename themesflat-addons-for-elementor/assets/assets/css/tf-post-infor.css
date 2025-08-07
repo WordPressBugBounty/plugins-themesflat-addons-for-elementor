@@ -1,0 +1,56 @@
+/* Post Info
+-------------------------------------------------------------- */
+.tf-post-info.layout-inline .list-post-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.tf-post-info .list-post-info {
+    list-style: none;
+    margin: 0;
+}
+
+.tf-post-info .list-post-info .list-item .list-icon img {
+    vertical-align: middle;
+}
+
+.tf-post-info.layout-inline .list-post-info .list-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.tf-post-info.layout-inline .list-post-info .list-item .list-icon {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.tf-post-info.layout-inline .list-post-info .list-item .list-icon+.list-text {
+    -ms-flex-item-align: center;
+    align-self: center;
+}
+
+.elementor-widget-tfposts-info.elementor-align-left .list-post-info {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.elementor-widget-tfposts-info.elementor-align-center .list-post-info {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.elementor-widget-tfposts-info.elementor-align-right .list-post-info {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}

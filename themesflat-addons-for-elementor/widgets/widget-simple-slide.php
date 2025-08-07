@@ -782,6 +782,7 @@ if(!class_exists('TFSlide_Widget_Free')){
 		                'type'   => \Elementor\Controls_Manager::REPEATER,
 		                'fields' => $repeater->get_controls(),
 		                'title_field' => '{{{ btn_title }}}',
+						'max_items' => 3
 		            ]
 		        );
 		        $this->end_controls_section();
@@ -1144,28 +1145,32 @@ if(!class_exists('TFSlide_Widget_Free')){
 	        	$desc_html = '<div class="desc">'.wp_kses_post($settings['vegas_desc_text']).'</div>';  
 	        }	        
 
-	        if ($settings['create_buttons']) {
-				foreach ( $settings['create_buttons'] as $key => $value ) {			
+			if ($settings['create_buttons']) {
+				foreach ( $settings['create_buttons'] as $key => $value ) {            
 					if( $key < 3 ) {
-						$this->add_render_attribute('button_text', 'class','button-one elementor-repeater-item-'.$value['_id']);
-						$this->add_render_attribute('button_text', 'href', esc_url($value['btn_url']['url'] ? $value['btn_url']['url'] : '#'));
+						$button_key = 'button_text_' . $key;
+
+						$this->add_render_attribute($button_key, 'class', 'button-one elementor-repeater-item-' . $value['_id']);
+						$this->add_render_attribute($button_key, 'href', esc_url($value['btn_url']['url'] ? $value['btn_url']['url'] : '#'));
+
 						if (!empty($value['btn_url']['is_external'])) {
-						$this->add_render_attribute('button_text', 'target', '_blank');
+							$this->add_render_attribute($button_key, 'target', '_blank');
 						}
 						if (!empty($value['btn_url']['nofollow'])) {
-						$this->add_render_attribute('button_text', 'rel', 'nofollow');
+							$this->add_render_attribute($button_key, 'rel', 'nofollow');
 						}
-						$link_url = $this->get_render_attribute_string('button_text'); 
-						if ($value['btn_title'] != '') {					
-							if ( $value['icon_button_align'] == 'btn-icon-left' ) {
-								$btn_html .= sprintf('<a '.$link_url.'><span class="btn-icon-left">%s</span> '.$value['btn_title'].'</a>', \Elementor\Addon_Elementor_Icon_manager_free::render_icon( $value['btn_icon'], [ 'aria-hidden' => 'true' ] ) );
-							}else {
-								$btn_html .= sprintf('<a '.$link_url.'>'.$value['btn_title'].' <span class="btn-icon-right">%s</span></a>', \Elementor\Addon_Elementor_Icon_manager_free::render_icon( $value['btn_icon'], [ 'aria-hidden' => 'true' ] ) );
-							}	
-						}		
-						
+
+						$link_url = $this->get_render_attribute_string($button_key);
+
+						if ($value['btn_title'] != '') {                    
+							if ($value['icon_button_align'] == 'btn-icon-left') {
+								$btn_html .= sprintf('<a '.$link_url.'><span class="btn-icon-left">%s</span> '.$value['btn_title'].'</a>', \Elementor\Addon_Elementor_Icon_manager_free::render_icon($value['btn_icon'], [ 'aria-hidden' => 'true' ]));
+							} else {
+								$btn_html .= sprintf('<a '.$link_url.'>'.$value['btn_title'].' <span class="btn-icon-right">%s</span></a>', \Elementor\Addon_Elementor_Icon_manager_free::render_icon($value['btn_icon'], [ 'aria-hidden' => 'true' ]));
+							}
+						}
 					}
-				}			
+				}
 			}
 
 	        if ( $settings['content_into_grid'] == 'yes' ) {

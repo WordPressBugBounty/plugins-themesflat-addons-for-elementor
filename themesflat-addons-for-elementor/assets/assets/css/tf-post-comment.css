@@ -1,0 +1,99 @@
+/* Comments
+-------------------------------------------------------------- */
+.tf-post-comment .comment-list .comment-body .says {
+    display: none;
+}   
+
+.tf-post-comment .comment-body .comment-author a {
+    display: inline-block;
+}
+
+.tf-post-comment #comments .comment .comment-body, 
+.tf-post-comment #comments .pingback .comment-body {
+    position: relative;
+}
+
+/* style1 */
+.tf-comment-form-style1 .comment-form {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.tf-comment-form-style1 .comment-form .comment-form-comment,
+.tf-comment-form-style1 .comment-form .comment-notes,
+.tf-comment-form-style1 .comment-form .comment-form-cookies-consent,
+.tf-comment-form-style1 .comment-form .form-submit,
+.tf-comment-form-style1 .comment-form .logged-in-as {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.tf-comment-form-style1 .comment-form .comment-form-author,
+.tf-comment-form-style1 .comment-form .comment-form-email,
+.tf-comment-form-style1 .comment-form .comment-form-url {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* style2 */
+.tf-comment-form-style2 .comment-form {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.tf-comment-form-style2 .comment-form .comment-form-comment,
+.tf-comment-form-style2 .comment-form .comment-notes,
+.tf-comment-form-style2 .comment-form .comment-form-cookies-consent,
+.tf-comment-form-style2 .comment-form .form-submit,
+.tf-comment-form-style1 .comment-form .logged-in-as {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.tf-comment-form-style2 .comment-form .comment-form-author,
+.tf-comment-form-style2 .comment-form .comment-form-email,
+.tf-comment-form-style2 .comment-form .comment-form-url {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+    .tf-comment-form-style1 .comment-form .comment-form-author,
+    .tf-comment-form-style1 .comment-form .comment-form-email,
+    .tf-comment-form-style1 .comment-form .comment-form-url,
+    .tf-comment-form-style2 .comment-form .comment-form-author,
+    .tf-comment-form-style2 .comment-form .comment-form-email,
+    .tf-comment-form-style2 .comment-form .comment-form-url {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.inline-block {
+    display: inline-block;
+}

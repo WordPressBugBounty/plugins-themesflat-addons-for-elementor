@@ -1,0 +1,34 @@
+/* Author Box
+-------------------------------------------------------------- */
+.tf-author-box-layout-image-left .author-box,
+.tf-author-box-layout-image-right .author-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.tf-author-box-layout-image-left .author-box .author-box-avatar,
+.tf-author-box-layout-image-right .author-box .author-box-avatar {
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.tf-author-box-layout-image-left .author-box .author-box-text,
+.tf-author-box-layout-image-right .author-box .author-box-text {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.tf-author-box-layout-image-right .author-box {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    text-align: right;
+}

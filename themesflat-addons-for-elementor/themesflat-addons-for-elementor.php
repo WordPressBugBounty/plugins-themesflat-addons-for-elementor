@@ -4,13 +4,13 @@ Plugin Name: Themesflat Addons For Elementor
 Description: The theme's components
 Author: Themesflat
 Author URI: http://themesflat-addons.com/
-Version: 2.2.7
+Version: 2.2.8
 Text Domain: themesflat-addons-for-elementor
 Domain Path: /languages
 
-WC tested up to: 9.9
-Elementor tested up to: 3.29
-Elementor Pro tested up to: 3.29
+WC tested up to: 10.0
+Elementor tested up to: 3.31
+Elementor Pro tested up to: 3.31
 
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

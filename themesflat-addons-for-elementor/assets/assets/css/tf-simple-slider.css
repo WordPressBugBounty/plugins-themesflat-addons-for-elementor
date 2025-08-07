@@ -1,0 +1,202 @@
+/* Hero Slide
+-------------------------------------------------------------- */
+ul,
+ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.hero-section { 
+    position: relative; 
+}
+
+.hero-section .vegas-content { 
+    position: relative; 
+    z-index: 20;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.hero-section .overlay { 
+    position:absolute; 
+    left:0; 
+    top:0;
+    width:100%; 
+    height:100%;  
+}
+
+.hero-section .vegas-arrow { 
+    z-index: 99999; 
+    position: absolute; 
+    bottom: 60px; 
+    left: 50%; 
+    margin-left: -25px;
+    width: 50px; 
+    height: 50px; 
+    line-height: 48px;
+    text-align: center; 
+    -webkit-animation-fill-mode: both !important; 
+    animation-fill-mode: both !important; 
+    -webkit-animation-timing-function: linear !important; 
+    animation-timing-function: linear !important; 
+    -webkit-animation-duration: 2s !important; 
+    animation-duration: 2s !important; 
+}
+
+.hero-section .vegas-arrow.outline-circle {
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.hero-section .vegas-arrow.outline-square {
+    border: 1px solid #fff;
+}
+
+.hero-section .vegas-arrow svg,
+.hero-section .vegas-arrow i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+.hero-section .vegas-arrow:hover { 
+    -webkit-animation-play-state: paused; 
+    animation-play-state: paused; 
+}
+
+.hero-section .vegas-arrow.infinite-tf { 
+    -webkit-animation-iteration-count: infinite; 
+    animation-iteration-count: infinite; 
+}
+
+.hero-section .vegas-container { 
+    max-width: 1140px; 
+    width: 100%; 
+    margin-right: auto; 
+    margin-left: auto; 
+}
+
+.flexslider .flex_caption {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.hero-section.center .slide-fancy-text,
+.hero-section.center .desc {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-section.center .button-one,
+.hero-section.center .button-two {
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+.hero-section.center .animationtext,
+.hero-section.center .animationtext .cd-words-wrapper {
+    text-align: center;
+}
+
+.vegas-content .button-one,
+.vegas-content .button-two {
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    font-family: "Roboto", Sans-serif;
+    font-weight: 400;
+    padding: 19px 38px 19px 43px;
+    border-radius: 50px 50px 50px 50px;
+    border: 2px solid;
+}
+.vegas-content a.button-one i {
+    margin-left: 5px;
+}
+.button-size-xs { font-size: 13px; padding: 10px 20px; }
+.button-size-sm { font-size: 15px; padding: 12px 24px; }
+.button-size-md { font-size: 17px; padding: 15px 30px; }
+.button-size-lg { font-size: 19px; padding: 20px 40px; }
+.button-size-xl { font-size: 21px; padding: 25px 50px; }
+
+.vegas-content .button-one .button-content-wrapper,
+.vegas-content .button-two .button-content-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.vegas-content .button-one .text,
+.vegas-content .button-two .text {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-ordinal-group: 11;
+    -webkit-order: 10;
+    -ms-flex-order: 10;
+    order: 10;
+    display: inline-block;
+}
+
+.vegas-content .button-one .btn-icon-left,
+.vegas-content .button-two .btn-icon-left {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-box-ordinal-group: 6;
+    -webkit-order: 5;
+    -ms-flex-order: 5;
+    order: 5;
+    vertical-align: middle;
+}
+
+.vegas-content .button-one .btn-icon-right,
+.vegas-content .button-two .btn-icon-right {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-box-ordinal-group: 16;
+    -webkit-order: 15;
+    -ms-flex-order: 15;
+    order: 15;
+    vertical-align: middle;
+}
+
+
+.vegas-content a.button-two:hover, 
+.vegas-content a.button-two:focus {
+    border-color: #222;
+}
