@@ -334,6 +334,26 @@ if (!class_exists('tf_meta_boxes')) {
                     update_post_meta( $post_id, $key, $value );
                 }
             }
+
+            // if ( isset( $_REQUEST ) && isset( $_REQUEST['_themesflat_options'] ) ) {
+            //     $datas = stripslashes_deep( $_REQUEST['_themesflat_options'] );
+                
+            //     if ( 'yes' === get_option( 'woocommerce_enable_hpos', 'no' ) ) {
+            //         foreach ($datas as $key => $value ) {
+                    
+            //             $order = wc_get_order( $post_id ); 
+            //             if ( $order ) {
+            //                 $order->update_meta_data( $key, $value ); 
+            //                 $order->save();
+            //             }
+            //         }
+            //     } else {
+            //         foreach ($datas as $key => $value ) {
+            //             update_post_meta( $post_id, $key, $value );
+            //         }
+            //     }
+            // }
+
         }
         public function page_meta_box() {
             $this -> setup($this->meta_boxes);

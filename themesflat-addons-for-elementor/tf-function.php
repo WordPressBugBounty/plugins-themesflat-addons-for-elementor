@@ -95,6 +95,19 @@ if( !function_exists('tf_save_metabox_of_general_tab') ){
         $tf_flashsale_text_2 = wp_kses_post( stripslashes( $_POST['_tf_flashsale_text_2'] ) );
         update_post_meta( $post_id, '_tf_flashsale_text', $tf_flashsale_text);
         update_post_meta( $post_id, '_tf_flashsale_text_2', $tf_flashsale_text_2);
+
+        // if ( 'yes' === get_option( 'woocommerce_enable_hpos', 'no' ) ) {
+        //     $order = wc_get_order( $post_id ); // Get the order
+        //     if ( $order ) {
+        //         $order->update_meta_data( '_tf_flashsale_text', $tf_flashsale_text );
+        //         $order->update_meta_data( '_tf_flashsale_text_2', $tf_flashsale_text_2 );
+        //         $order->save();
+        //     }
+        // } else {
+        //     // HPOS is not enabled, use the old method
+        //     update_post_meta( $post_id, '_tf_flashsale_text', $tf_flashsale_text );
+        //     update_post_meta( $post_id, '_tf_flashsale_text_2', $tf_flashsale_text_2 );
+        // }
     }
     add_action( 'woocommerce_process_product_meta', 'tf_save_metabox_of_general_tab');
 }
@@ -157,6 +170,7 @@ if( !function_exists('get_sale_price')){
         }  
     }
 }
+
 
 /* Pagination Woo */
 if(!function_exists('tf_custom_pagination_woo')){

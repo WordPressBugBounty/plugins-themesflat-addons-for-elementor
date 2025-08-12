@@ -4,7 +4,7 @@ Plugin Name: Themesflat Addons For Elementor
 Description: The theme's components
 Author: Themesflat
 Author URI: http://themesflat-addons.com/
-Version: 2.2.8
+Version: 2.2.9
 Text Domain: themesflat-addons-for-elementor
 Domain Path: /languages
 
@@ -62,6 +62,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
     public function i18n() {
         load_plugin_textdomain( 'themesflat-addons-for-elementor', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
+    
 
     public function init() {
         // Check if Elementor installed and activated        
@@ -89,6 +90,13 @@ final class ThemesFlat_Addon_For_Elementor_Free {
             add_action('admin_notices', [ $this, 'tf_admin_notice_compare_quick_view_wishlist' ] );
         }*/
 
+
+            
+        add_action( 'before_woocommerce_init', function() {
+            if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+                \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+            }
+        } );
        
         require_once( __DIR__ . '/shortcode.php' );
 
@@ -511,12 +519,12 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         }
         if ( class_exists( 'YITH_WCWL' ) ) {
 
-            if(tf_opt_get_option('wd_woo_wishlist_count') === false || tf_opt_get_option('wd_woo_wishlist_count') === 'on') {
-                require_once( __DIR__ . '/widgets/widget-wishlist-count.php' );
-                \Elementor\Plugin::instance()->widgets_manager->register( new \TFWishlistCount_Widget_Free() );
-            } elseif (tf_opt_get_option('wd_woo_wishlist_count') !== 'on' ) {
+            // if(tf_opt_get_option('wd_woo_wishlist_count') === false || tf_opt_get_option('wd_woo_wishlist_count') === 'on') {
+            //     require_once( __DIR__ . '/widgets/widget-wishlist-count.php' );
+            //     \Elementor\Plugin::instance()->widgets_manager->register( new \TFWishlistCount_Widget_Free() );
+            // } elseif (tf_opt_get_option('wd_woo_wishlist_count') !== 'on' ) {
     
-            }
+            // }
             
         }
     }
@@ -930,6 +938,46 @@ final class ThemesFlat_Addon_For_Elementor_Free {
 
         return false;
     }
+
+    // public function tf_header_footer_save_meta( $post_id ) {
+    //     if ( 'order' === get_post_type( $post_id ) && 'yes' === get_option( 'woocommerce_enable_hpos', 'no' ) ) {
+    //         $order = wc_get_order( $post_id );
+    //         if ( $order ) {
+    //             if ( isset( $_POST['tfhf_template_type'] ) ) {
+    //                 $order->update_meta_data( 'tfhf_template_type', esc_attr( $_POST['tfhf_template_type'] ) );
+    //             }
+
+    //             $target_locations = self::get_format_rule_value( $_POST, 'tfhf-target-rules-location' );
+    //             $order->update_meta_data( 'tfhf_template_include_locations', $target_locations );
+
+    //             $target_exclusion = self::get_format_rule_value( $_POST, 'tfhf-target-rules-exclusion' );
+    //             $order->update_meta_data( 'tfhf_template_exclude_locations', $target_exclusion );
+
+    //             $order->save();
+    //         }
+    //     } else {
+    //         if ( isset( $_POST['tfhf_template_type'] ) ) {
+    //             update_post_meta( $post_id, 'tfhf_template_type', esc_attr( $_POST['tfhf_template_type'] ) );
+    //         }
+
+    //         if ( ! isset( $_POST['tfhf_meta_nounce'] ) || ! wp_verify_nonce( $_POST['tfhf_meta_nounce'], 'tfhf_meta_nounce' ) ) {
+    //             return;
+    //         }
+            
+    //         if ( ! current_user_can( 'edit_posts' ) ) {
+    //             return;
+    //         }
+
+    //         $target_locations = self::get_format_rule_value( $_POST, 'tfhf-target-rules-location' );
+    //         update_post_meta( $post_id, 'tfhf_template_include_locations', $target_locations );
+
+    //         $target_exclusion = self::get_format_rule_value( $_POST, 'tfhf-target-rules-exclusion' );        
+    //         update_post_meta( $post_id, 'tfhf_template_exclude_locations', $target_exclusion );
+    //     }
+
+    //     return false;
+    // }
+
 
     public function tf_header_footer_load_canvas_template( $single_template ) {
         global $post;
