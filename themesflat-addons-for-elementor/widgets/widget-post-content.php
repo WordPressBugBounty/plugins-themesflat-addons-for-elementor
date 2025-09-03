@@ -126,7 +126,7 @@ class TFPostContent_Widget_Free extends \Elementor\Widget_Base {
 		if ( $with_wrapper ) {
 			echo '<div class="tf-post-content">' . balanceTags( $content, true ) . '</div>';
 		} else {
-			echo '<div class="tf-post-content">' . $content . '</div>';
+			echo '<div class="tf-post-content">' . wp_kses_post( $content ) . '</div>';
 		}
 	}
 

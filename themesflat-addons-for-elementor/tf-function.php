@@ -163,7 +163,7 @@ if( !function_exists('get_sale_price')){
                     }                
                 }else {
                     if ($percentage != 0 && $percentage != 100 ) {
-                        return '<span class="onsale">'.$text_sale.'</span>';
+                        return '<span class="onsale">'.esc_html($text_sale).'</span>';
                     } 
                 } 
             }     

@@ -3719,7 +3719,7 @@ if (!class_exists('TFWooProductGrid_Widget_Free')) {
 											    
 											    <input type="hidden" name="product_tab_badge" id="product_tab_badge" value="all" />
 											    <button type="submit" class="filter-button"><?php esc_html_e('Filter','themesflat-addons-for-elementor'); ?></button>
-											    <input type="hidden" name="settings" value="<?php echo base64_encode(serialize($settings),); ?>" />
+											    <input type="hidden" name="settings" value="<?php echo esc_attr(base64_encode(serialize($settings),)); ?>" />
 											</form>
 										</div>
 									</li>
