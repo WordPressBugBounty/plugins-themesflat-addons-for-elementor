@@ -207,7 +207,7 @@ if (!class_exists('TF_Post_Format')) {
                     <div class="themesflat_control_logo"></div>
                 </div>
             </div>
-            <input name="<?php echo esc_attr($name);?>" data-customize-setting-link="<?php echo  esc_attr($id);?>" value="<?php echo esc_attr(json_encode($controls));?>" type="hidden"/>
+            <input name="<?php echo esc_attr($name);?>" data-customize-setting-link="<?php echo  esc_attr($id);?>" value="<?php echo esc_attr(wp_json_encode($controls));?>" type="hidden"/>
             <?php 
         }
         

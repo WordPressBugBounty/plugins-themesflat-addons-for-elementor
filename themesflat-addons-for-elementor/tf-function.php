@@ -123,18 +123,18 @@ if( !function_exists('get_flash_sale')){
             if( !empty( $text_flash_sale ) && $product->is_in_stock() ){
                 
                 if( $product->is_featured() ){                
-                    $badge .= '<span class="badge badge01 flash-sale hot">'.$text_flash_sale.'</span>';              
+                    $badge .= '<span class="badge badge01 flash-sale hot">'.esc_html($text_flash_sale).'</span>';              
                 }else{
-                    $badge .= '<span class="badge badge01 flash-sale flash-sale-right">'.$text_flash_sale.'</span>';
+                    $badge .= '<span class="badge badge01 flash-sale flash-sale-right">'.esc_html($text_flash_sale).'</span>';
                 }
             }
 
             if( !empty( $text_flash_sale_2 ) && $product->is_in_stock() ){
                 
                 if( $product->is_featured() ){                
-                    $badge .= '<span class="badge badge02 flash-sale hot">'.$text_flash_sale_2.'</span>';              
+                    $badge .= '<span class="badge badge02 flash-sale hot">'.esc_html($text_flash_sale_2).'</span>';              
                 }else{
-                    $badge .= '<span class="badge badge02 flash-sale flash-sale-right">'.$text_flash_sale_2.'</span>';
+                    $badge .= '<span class="badge badge02 flash-sale flash-sale-right">'.esc_html($text_flash_sale_2).'</span>';
                 }
             }
             $badge .= '</span>';
@@ -159,7 +159,7 @@ if( !function_exists('get_sale_price')){
                 
                 if ($sale_style == 'sale_percent') {
                     if ($percentage != 0 && $percentage != 100 ) {
-                        return '<span class="onsale sale-percent">'.$prefix_percent.$percentage.'%</span>';
+                        return '<span class="onsale sale-percent">'. esc_html($prefix_percent) . intval($percentage) .'%</span>';
                     }                
                 }else {
                     if ($percentage != 0 && $percentage != 100 ) {

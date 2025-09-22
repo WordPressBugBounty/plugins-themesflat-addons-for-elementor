@@ -4,7 +4,7 @@ Plugin Name: Themesflat Addons For Elementor
 Description: The theme's components
 Author: Themesflat
 Author URI: http://themesflat-addons.com/
-Version: 2.3.0
+Version: 2.3.1
 Text Domain: themesflat-addons-for-elementor
 Domain Path: /languages
 
@@ -1346,8 +1346,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
             $output .= '</div>';
 
             $output .= '</div>';
-
-            echo $output;
+echo ( $output );
         }
 
         public static function get_post_target_rule_options( $post_type, $taxonomy ) {
