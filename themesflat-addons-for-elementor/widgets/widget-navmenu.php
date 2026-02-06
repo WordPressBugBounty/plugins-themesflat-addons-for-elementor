@@ -1776,144 +1776,165 @@ class TFNavMenu_Widget_Free extends \Elementor\Widget_Base {
 	    // /.End Menu Panel Style
 	}
 
-	protected function render($instance = []) {
+	protected function render( $instance = [] ) {
+
 		$settings = $this->get_settings_for_display();
+
 		$class = $btn_menu_mobile_icon = $btn_menu_close = $url_logo = $logo = $submenu_icon = $one_page = '';
 
-		if ($settings['one_page_enable'] == 'yes') {
+		/* One page */
+		if ( isset($settings['one_page_enable']) && $settings['one_page_enable'] === 'yes' ) {
 			$one_page = ' has-one-page';
 		}
 
-		$class .= esc_attr($settings['main_menu_position']) . ' ' . esc_attr($settings['layout']) . ' '.esc_attr($settings['menu_panel_style']) .' tf_link_effect_'. esc_attr($settings['link_hover_effect']) .' tf_animation_line_'. esc_attr($settings['animation_line']) . $one_page . ' '.esc_attr($settings['dropdown_style']);
+		/* Wrapper class – giữ nguyên */
+		$class .= esc_attr( $settings['main_menu_position'] ) . ' '
+			. esc_attr( $settings['layout'] ) . ' '
+			. esc_attr( $settings['menu_panel_style'] ) . ' '
+			. 'tf_link_effect_' . esc_attr( $settings['link_hover_effect'] ) . ' '
+			. 'tf_animation_line_' . esc_attr( $settings['animation_line'] )
+			. $one_page . ' '
+			. esc_attr( $settings['dropdown_style'] );
 
-		switch ($settings['submenu_icon']) {
+		/* Submenu icon */
+		switch ( $settings['submenu_icon'] ) {
 			case 'classic':
 				$submenu_icon = '<i class="fa fa-caret-right" aria-hidden="true"></i>';
 				break;
 			case 'arrows':
 				$submenu_icon = '<i class="fa fa-angle-right" aria-hidden="true"></i>';
-				break;	
+				break;
 			case 'plus':
-				$submenu_icon = '<i>+</i>';
-				break;		
+				$submenu_icon = '<i aria-hidden="true">+</i>';
+				break;
 			default:
 				$submenu_icon = '<i class="fa fa-angle-right" aria-hidden="true"></i>';
 				break;
 		}
 
-		if ( $settings['btn_menu_mobile_icon']['value'] != '' ) {
-			if ( !empty( $settings['btn_menu_mobile_icon']['value']['url'] ) ) {
+		$submenu_icon = wp_kses( $submenu_icon, [
+			'i' => [
+				'class' => true,
+				'aria-hidden' => true,
+			],
+		] );
+
+		/* Mobile open icon */
+		if ( ! empty( $settings['btn_menu_mobile_icon']['value'] ) ) {
+			if ( ! empty( $settings['btn_menu_mobile_icon']['value']['url'] ) ) {
 				$btn_menu_mobile_icon = sprintf(
-		           '<img class="logo_svg" src="%1$s" alt="%2$s"/>',
-		             esc_url($settings['btn_menu_mobile_icon']['value']['url']),
-		             esc_attr($settings['btn_menu_mobile_icon']['value']['id'])
-		            
-		         ); 
+					'<img class="logo_svg" src="%1$s" alt="%2$s"/>',
+					esc_url( $settings['btn_menu_mobile_icon']['value']['url'] ),
+					esc_attr( $settings['btn_menu_mobile_icon']['value']['id'] )
+				);
 			} else {
 				$btn_menu_mobile_icon = sprintf(
-		             '<i class="%1$s"></i>',
-		            $settings['btn_menu_mobile_icon']['value']
-		        );  
+					'<i class="%1$s"></i>',
+					esc_attr( $settings['btn_menu_mobile_icon']['value'] )
+				);
 			}
 		}
 
+		$btn_menu_mobile_icon = wp_kses( $btn_menu_mobile_icon, [
+			'i' => [ 'class' => true ],
+			'img' => [ 'class' => true, 'src' => true, 'alt' => true ],
+		] );
 
-		if ( $settings['btn_menu_close']['value'] != '' ) {
-			if ( !empty( $settings['btn_menu_close']['value']['url'] ) ) {
+		/* Close icon */
+		if ( ! empty( $settings['btn_menu_close']['value'] ) ) {
+			if ( ! empty( $settings['btn_menu_close']['value']['url'] ) ) {
 				$btn_menu_close = sprintf(
-		           '<img class="logo_svg" src="%1$s" alt="%2$s"/>',
-				   	 esc_url($settings['btn_menu_close']['value']['url']),
-					esc_attr($settings['btn_menu_close']['value']['id'])
-		            
-		         ); 
+					'<img class="logo_svg" src="%1$s" alt="%2$s"/>',
+					esc_url( $settings['btn_menu_close']['value']['url'] ),
+					esc_attr( $settings['btn_menu_close']['value']['id'] )
+				);
 			} else {
 				$btn_menu_close = sprintf(
-		             '<i class="%1$s"></i>',
-					 esc_attr($settings['btn_menu_close']['value'])
-		        );  
+					'<i class="%1$s"></i>',
+					esc_attr( $settings['btn_menu_close']['value'] )
+				);
 			}
 		}
 
-			$this->add_render_attribute('nav_menu_logo_link', 'class','logo-nav');
-			if (!empty($settings['nav_menu_logo_link']['url'])) {
-				$this->add_render_attribute('nav_menu_logo_link', 'href', esc_url($settings['nav_menu_logo_link']['url'] ? $settings['nav_menu_logo_link']['url'] : '#'));
+		$btn_menu_close = wp_kses( $btn_menu_close, [
+			'i' => [ 'class' => true ],
+			'img' => [ 'class' => true, 'src' => true, 'alt' => true ],
+		] );
+
+		/* Logo link attributes – giữ chuẩn Elementor */
+		$this->add_render_attribute( 'nav_menu_logo_link', 'class', 'logo-nav' );
+
+		if ( ! empty( $settings['nav_menu_logo_link']['url'] ) ) {
+			$this->add_render_attribute( 'nav_menu_logo_link', 'href', esc_url( $settings['nav_menu_logo_link']['url'] ) );
+		}
+
+		if ( ! empty( $settings['nav_menu_logo_link']['is_external'] ) ) {
+			$this->add_render_attribute( 'nav_menu_logo_link', 'target', '_blank' );
+		}
+
+		if ( ! empty( $settings['nav_menu_logo_link']['nofollow'] ) ) {
+			$this->add_render_attribute( 'nav_menu_logo_link', 'rel', 'nofollow' );
+		}
+
+		$nav_menu_logo_link = $this->get_render_attribute_string( 'nav_menu_logo_link' );
+
+		/* Logo */
+		if ( ! empty( $settings['nav_menu_logo']['url'] ) ) {
+			$url_logo = esc_url( $settings['nav_menu_logo']['url'] );
+
+			if ( $settings['nav_menu_logo_url_to'] === 'custom' ) {
+				$logo = '<a ' . $nav_menu_logo_link . '><img src="' . $url_logo . '" alt="' . esc_attr( get_bloginfo('name') ) . '"></a>';
+			} else {
+				$logo = '<a href="' . esc_url( home_url('/') ) . '" class="logo-nav"><img src="' . $url_logo . '" alt="' . esc_attr( get_bloginfo('name') ) . '"></a>';
 			}
-			if (!empty($settings['nav_menu_logo_link']['is_external'])) {
-				$this->add_render_attribute('nav_menu_logo_link', 'target', '_blank');
-			}
-			if (!empty($settings['nav_menu_logo_link']['nofollow'])) {
-				$this->add_render_attribute('nav_menu_logo_link', 'rel', 'nofollow');
-			}
-			$nav_menu_logo_link = $this->get_render_attribute_string('nav_menu_logo_link'); 
+		} else {
+			$logo_text = esc_html( get_bloginfo('name') );
 
-		if ($settings['nav_menu_logo']['url']) {
-			$url_logo = $settings['nav_menu_logo']['url'];	
-
-			
-
-			if ($settings['nav_menu_logo_url_to'] == 'custom') {			
-				$logo = '<a '.$nav_menu_logo_link.'> <img src="'.esc_url($url_logo).'" alt="'.get_bloginfo('name').'"> </a>';
-
-			}else {		
-				$logo = '<a href="'. esc_url(home_url('/')).'" class="logo-nav"> <img src="'.esc_url($url_logo).'" alt="'.get_bloginfo('name').'"></a>';
-			}
-		}else {
-			if ($settings['nav_menu_logo_url_to'] == 'custom') {			
-				$logo = '<a href="'.$nav_menu_logo_link.'" class="logo-nav">'.get_bloginfo('name').'</a>';
-
-			}else {		
-				$logo = '<a href="'. esc_url(home_url('/')).'" class="logo-nav">'.get_bloginfo('name').'</a>';
+			if ( $settings['nav_menu_logo_url_to'] === 'custom' ) {
+				$logo = '<a ' . $nav_menu_logo_link . '>' . $logo_text . '</a>';
+			} else {
+				$logo = '<a href="' . esc_url( home_url('/') ) . '" class="logo-nav">' . $logo_text . '</a>';
 			}
 		}
 
-		
-		$id_random = 'tf-nav-'.uniqid();
+		/* Menu */
+		$id_random = 'tf-nav-' . uniqid();
 
-		$args = array(
-	        'menu'            => $settings['nav_menu'],
-	        'container'       => 'div',
-	        'container_class' => 'menu-container tf-menu-container',
-	        'container_id'    => '',
-	        'menu_class'      => 'menu',
-	        'menu_id'         => '',
-	        'echo'            => false,
-	        'fallback_cb'     => 'wp_page_menu',
-	        'before'          => '',
-	        'after'           => '',
-	        'link_before'     => '',
-	        'link_after'      => $submenu_icon,
-	        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-	        'item_spacing'    => 'preserve',
-	        'depth'           => 0,
-	        'walker'          => '',
-	        'theme_location'  => '',
-	    );
-		
-		echo sprintf ( 
+		$args = [
+			'menu' => $settings['nav_menu'],
+			'container' => 'div',
+			'container_class' => 'menu-container tf-menu-container',
+			'menu_class' => 'menu',
+			'echo' => false,
+			'fallback_cb' => 'wp_page_menu',
+			'link_after' => $submenu_icon,
+		];
+
+		$menu_html = wp_nav_menu( $args );
+
+		echo wp_kses_post( sprintf(
 			'<div class="tf-nav-menu %1$s %6$s" data-id_random="%6$s">
 				<div class="nav-panel %7$s">
 					<div class="wrap-logo-nav">%4$s</div>
 					<div class="mainnav-mobi">%2$s</div>
-					<div class="wrap-close-menu-panel-style-default"><button class="close-menu-panel-style-default">%5$s</button></div>					
-				</div>				
+					<div class="wrap-close-menu-panel-style-default">
+						<button class="close-menu-panel-style-default">%5$s</button>
+					</div>
+				</div>
 				<div class="mainnav nav">%2$s</div>
 				<div class="mobile-menu-overlay"></div>
 				<button class="tf-close">%5$s</button>
-				<button class="btn-menu-mobile">
-					<span class="open-icon">%3$s</span>
-				</button>
-				<button class="btn-menu-only">
-					<span class="open-icon">%3$s</span>
-				</button>
+				<button class="btn-menu-mobile"><span class="open-icon">%3$s</span></button>
+				<button class="btn-menu-only"><span class="open-icon">%3$s</span></button>
 			</div>',
 			$class,
-            wp_nav_menu($args),
-            $btn_menu_mobile_icon,
-            $logo,
-            $btn_menu_close,
-            $id_random,
-            $settings['mobile_menu_alignment']         
-        );
+			$menu_html,
+			$btn_menu_mobile_icon,
+			$logo,
+			$btn_menu_close,
+			esc_attr( $id_random ),
+			esc_attr( $settings['mobile_menu_alignment'] )
+		) );
 	}
 
 	

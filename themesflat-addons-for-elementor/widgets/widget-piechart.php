@@ -603,46 +603,78 @@ class TFPieChart_Widget_Free extends \Elementor\Widget_Base {
         // /.End Style Description
 	}
 
-	protected function render($instance = []) {
-		$settings = $this->get_settings_for_display();
+	protected function render( $instance = [] ) {
 
-        $this->add_render_attribute( 'tf_pie_chart', ['id' => "tf-pie-chart-{$this->get_id()}", 'class' => ['tf-pie-chart', $settings['pie_chart_position'], $settings['style']], 'data-tabid' => $this->get_id()] );
+        $settings = $this->get_settings_for_display();
 
-		?>
-        <div <?php echo $this->get_render_attribute_string('tf_pie_chart'); ?>>
+        $this->add_render_attribute(
+            'tf_pie_chart',
+            [
+                'id'    => 'tf-pie-chart-' . esc_attr( $this->get_id() ),
+                'class' => [
+                    'tf-pie-chart',
+                    esc_attr( $settings['pie_chart_position'] ),
+                    esc_attr( $settings['style'] ),
+                ],
+                'data-tabid' => esc_attr( $this->get_id() ),
+            ]
+        );
+        ?>
+
+        <div <?php echo $this->get_render_attribute_string( 'tf_pie_chart' ); ?>>
             <div class="tf-pie-chart-inner">
 
-                <?php if ($settings['piechart_style'] == 'withcontent'): ?>
-                    <?php if ($settings['style'] == 'style2'): ?>
-                        <div class="pie-chart-content">
-                            <h2 class="tf-piechart-title"><?php echo esc_attr($settings['piechart_title']); ?></h2>
-                        </div>
-                    <?php endif; ?>
+                <?php if ( $settings['piechart_style'] === 'withcontent' && $settings['style'] === 'style2' ) : ?>
+                    <div class="pie-chart-content">
+                        <h2 class="tf-piechart-title">
+                            <?php echo esc_html( $settings['piechart_title'] ); ?>
+                        </h2>
+                    </div>
                 <?php endif; ?>
 
                 <div class="pie-chart">
                     <div class="chart-percent">
-                        <span class="chart" data-percent="<?php echo esc_attr($settings['piechart_percentage']); ?>" data-width="<?php echo esc_attr($settings['piechart_border_size']['size']); ?>" data-size="<?php echo esc_attr($settings['piechart_size']['size']); ?>" data-color="<?php echo esc_attr($settings['piechart_line_color']); ?>" data-trackcolor="<?php echo esc_attr($settings['piechart_bar_color_bg']); ?>">
+                        <span
+                            class="chart"
+                            data-percent="<?php echo esc_attr( (int) $settings['piechart_percentage'] ); ?>"
+                            data-width="<?php echo esc_attr( (int) $settings['piechart_border_size']['size'] ); ?>"
+                            data-size="<?php echo esc_attr( (int) $settings['piechart_size']['size'] ); ?>"
+                            data-color="<?php echo esc_attr( $settings['piechart_line_color'] ); ?>"
+                            data-trackcolor="<?php echo esc_attr( $settings['piechart_bar_color_bg'] ); ?>"
+                        >
                             <span class="percent"></span>
                         </span>
                     </div>
                 </div>
 
-                <?php if ($settings['piechart_style'] == 'withcontent'): ?>
-                    <?php if ($settings['style'] == 'style1'): ?>
+                <?php if ( $settings['piechart_style'] === 'withcontent' ) : ?>
+
+                    <?php if ( $settings['style'] === 'style1' ) : ?>
                         <div class="pie-chart-content">
-                            <h2 class="tf-piechart-title"><?php echo esc_attr($settings['piechart_title']); ?></h2>
-                            <p class="tf-piechart-description"><?php echo esc_attr($settings['piechart_description']); ?></p>
+                            <h2 class="tf-piechart-title">
+                                <?php echo esc_html( $settings['piechart_title'] ); ?>
+                            </h2>
+
+                            <p class="tf-piechart-description">
+                                <?php echo esc_html( $settings['piechart_description'] ); ?>
+                            </p>
                         </div>
-                    <?php elseif($settings['style'] == 'style2'): ?>
+
+                    <?php elseif ( $settings['style'] === 'style2' ) : ?>
                         <div class="pie-chart-content">
-                            <h2 class="tf-piechart-title2"><?php echo esc_attr($settings['piechart_title_2']); ?></h2>
+                            <h2 class="tf-piechart-title2">
+                                <?php echo esc_html( $settings['piechart_title_2'] ); ?>
+                            </h2>
                         </div>
                     <?php endif; ?>
+
                 <?php endif; ?>
+
             </div>
         </div>
+
         <?php
-	}
+    }
+
 
 }

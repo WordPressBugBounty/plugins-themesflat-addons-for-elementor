@@ -453,66 +453,128 @@ class TFPostAuthorBox_Widget_Free extends \Elementor\Widget_Base {
 		return $author;
 	}
 
+
 	protected function render($instance = []) {
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute( 'tf_author_box_wrapper', ['id' => "tf-author-box-{$this->get_id()}", 'class' => ['tf-author-box'], 'data-tabid' => $this->get_id()] );
+		$this->add_render_attribute(
+			'tf_author_box_wrapper',
+			[
+				'id' => 'tf-author-box-' . esc_attr($this->get_id()),
+				'class' => ['tf-author-box'],
+				'data-tabid' => esc_attr($this->get_id()),
+			]
+		);
 
-		$content = $author_user_image = $author_display_name = $author_name = $author_bio = '';		
+		$author_user_image   = '';
+		$author_display_name = '';
+		$author_bio          = '';
 
-		if ( $settings['post_author_source'] == 'current' ) {
-			$avatar_args['size'] = 300;
-			$user_id = get_the_author_meta( 'ID' );
-			$author_user_image = get_avatar( $user_id , 300 );
-			$author_display_name = get_the_author_meta( 'display_name' );
-			$author_bio = get_the_author_meta( 'description' );
-		}else {
-			$author_user_image =  \Elementor\Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'image' );
-			$author_display_name = $settings['name'];
-			$author_bio = $settings['biography'];
+		/** =========================
+		 *  Get author data
+		 *  ========================= */
+		if ( $settings['post_author_source'] === 'current' ) {
+
+			$user_id = get_the_author_meta('ID');
+
+			$author_user_image   = get_avatar( $user_id, 300 );
+			$author_display_name = get_the_author_meta( 'display_name', $user_id );
+			$author_bio          = get_the_author_meta( 'description', $user_id );
+
+		} else {
+
+			$author_user_image   = \Elementor\Group_Control_Image_Size::get_attachment_image_html(
+				$settings,
+				'thumbnail',
+				'image'
+			);
+
+			$author_display_name = $settings['name'] ?? '';
+			$author_bio          = $settings['biography'] ?? '';
 		}
 
+		/** =========================
+		 *  Build author name (with link)
+		 *  ========================= */
+		$author_name = esc_html( $author_display_name );
+
 		switch ( $settings['select_link_to'] ) {
+
 			case 'home':
-				$author_name = sprintf( '<a href="%1$s">%2$s</a>', esc_url( get_home_url() ), $author_display_name );
+				$author_name = sprintf(
+					'<a href="%s">%s</a>',
+					esc_url( home_url('/') ),
+					esc_html( $author_display_name )
+				);
 				break;
+
 			case 'post':
-				$author_name = sprintf( '<a href="%1$s">%2$s</a>', esc_url( get_the_permalink() ), $author_display_name );
+				$author_name = sprintf(
+					'<a href="%s">%s</a>',
+					esc_url( get_permalink() ),
+					esc_html( $author_display_name )
+				);
 				break;
+
 			case 'author':
-				$author_name = sprintf( '<a href="%1$s">%2$s</a>', esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ), $author_display_name );
+				$author_name = sprintf(
+					'<a href="%s">%s</a>',
+					esc_url( get_author_posts_url( get_the_author_meta('ID') ) ),
+					esc_html( $author_display_name )
+				);
 				break;
+
 			case 'custom':
-				$target = $settings['link_to']['is_external'] ? ' target="_blank"' : '';
-				$nofollow = $settings['link_to']['nofollow'] ? ' rel="nofollow"' : '';
-				$author_name = sprintf( '<a href="%1$s" %2$s %3$s>%4$s</a>', esc_url( $settings['link_to']['url'] ), esc_attr($target), esc_attr($nofollow), $author_display_name );
-				break;
-			default:
-				$author_name = $author_display_name;
-				break;
-		}						
+				if ( ! empty( $settings['link_to']['url'] ) ) {
 
-		$box_avatar = sprintf( '<div class="author-box-avatar">%1$s</div>',  $author_user_image );			
-		$box_text = sprintf( '
-						<div class="author-box-text">
-							<%1$s class="author-box-name">%2$s</%1$s>
-							<div class="author-box-bio">%3$s</div>
-						</div>',
-						\Elementor\Utils::validate_html_tag($settings['html_tag']), $author_name, $author_bio 
+					$target   = ! empty( $settings['link_to']['is_external'] ) ? ' target="_blank"' : '';
+					$nofollow = ! empty( $settings['link_to']['nofollow'] ) ? ' rel="nofollow"' : '';
+
+					$author_name = sprintf(
+						'<a href="%s"%s%s>%s</a>',
+						esc_url( $settings['link_to']['url'] ),
+						esc_attr( $target ),
+						esc_attr( $nofollow ),
+						esc_html( $author_display_name )
 					);
+				}
+				break;
+		}
 
-		$content = sprintf('<div class="author-box">%1$s %2$s</div>', $box_avatar, $box_text);
+		/** =========================
+		 *  HTML tag validation
+		 *  ========================= */
+		$tag = \Elementor\Utils::validate_html_tag( $settings['html_tag'] );
 
-		echo sprintf ( 
-			'<div %1$s> 
-				%2$s                
-            </div>',
-            $this->get_render_attribute_string('tf_author_box_wrapper'),
-            $content
-        );
-		
+		/** =========================
+		 *  Output
+		 *  ========================= */
+		?>
+		<div <?php echo $this->get_render_attribute_string('tf_author_box_wrapper'); ?>>
+			<div class="author-box">
+
+				<?php if ( $author_user_image ) : ?>
+					<div class="author-box-avatar">
+						<?php echo wp_kses_post( $author_user_image ); ?>
+					</div>
+				<?php endif; ?>
+
+				<div class="author-box-text">
+					<<?php echo esc_html( $tag ); ?> class="author-box-name">
+						<?php echo wp_kses_post( $author_name ); ?>
+					</<?php echo esc_html( $tag ); ?>>
+
+					<?php if ( $author_bio ) : ?>
+						<div class="author-box-bio">
+							<?php echo esc_html( $author_bio ); ?>
+						</div>
+					<?php endif; ?>
+				</div>
+
+			</div>
+		</div>
+		<?php
 	}
 
-	
 
 }

@@ -508,7 +508,7 @@ class TFCountdown_Widget_Free extends \Elementor\Widget_Base {
 		if ( $instance['show_labels'] ) {
 			$default_labels = $this->get_default_countdown_labels();
 			$label = ( $instance['custom_labels'] ) ? $instance[ $label ] : $default_labels[ $label ];
-			$string .= ' <span class="tf-countdown-label">' . $label . '</span>';
+			$string .= ' <span class="tf-countdown-label">' . esc_html($label) . '</span>';
 		}
 
 		$string .= '</div>';
@@ -540,7 +540,7 @@ class TFCountdown_Widget_Free extends \Elementor\Widget_Base {
 		$due_date = $settings['due_date'];
 		$content = $this->get_strftime( $settings );
 
-		$this->add_render_attribute( 'tf_countdown', ['id' => "tf-countdown-{$this->get_id()}", 'class' => ['tf-countdown', $settings['label_display'], 'position-align-'.$settings['position_align'] ], 'data-tabid' => $this->get_id(), 'data-date' => $due_date ] );
+		$this->add_render_attribute( 'tf_countdown', ['id' => "tf-countdown-{$this->get_id()}", 'class' => ['tf-countdown', $settings['label_display'], 'position-align-'.$settings['position_align'] ], 'data-tabid' => $this->get_id(), 'data-date' => esc_attr( $due_date ) ] );
 
 		echo sprintf ( 
 			'<div %1$s> 

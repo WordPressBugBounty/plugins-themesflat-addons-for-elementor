@@ -266,44 +266,84 @@ class TFAnimationitem_Widget_Free extends \Elementor\Widget_Base {
        
 	}
 
-	protected function render($instance = []) {
+	protected function render( $instance = [] ) {
+
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute( 'tf_counter', ['id' => "tf-animation-item-{$this->get_id()}", 'class' => ['tf-animation-item', $settings['style']], 'data-tabid' => $this->get_id()] );	
+		// allowlist styles
+		$allowed_style = ['default','style-1'];
 
-		$icon = $image = $animation_move = '';
+		$style = in_array($settings['style'], $allowed_style, true)
+			? $settings['style']
+			: 'default';
 
-		$icon = \Elementor\Addon_Elementor_Icon_manager_free::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] );
-        $animation_move = esc_attr($settings['animation_move']);
-		if ($settings['image'] != '') {
-			$url = esc_url($settings['image']['url']);
-			$image = sprintf( '<img src="%1s" alt="image">',$url);
+		// allowlist animation class
+		$allowed_moves = [
+			'default','to-top','to-bottom','to-left','to-right',
+			'circle-zoom','rotate-ani','ribbon-rotate','ani-1','ani-2'
+		];
+
+		$animation_move = '';
+
+		if ($style === 'style-1') {
+			$animation_move = 'animation-mouse'; // force system class
+		} elseif (isset($settings['animation_move']) && in_array($settings['animation_move'], $allowed_moves, true)) {
+			$animation_move = $settings['animation_move'];
 		}
 
-		if (isset($icon)) {
-			$animation_icon = sprintf('<div class="animation-icon">%1$s</div>',$icon);
-		} 
+		// wrapper attributes
+		$this->add_render_attribute(
+			'tf_animation_item_wrapper',
+			[
+				'id'    => esc_attr("tf-animation-item-" . $this->get_id()),
+				'class' => [
+					'tf-animation-item',
+					esc_attr($style)
+				],
+				'data-tabid' => esc_attr($this->get_id()),
+			]
+		);
 
-        if ($settings['style'] == 'style-1') {
-            $animation_move = 'animation-mouse';
-        }
+		$animation_icon = '';
 
-		if ($settings['icon_style'] == 'icon') {
-			$animation_icon = sprintf('<div class="animation-icon %2$s">%1$s</div>',$icon,$animation_move);
-		} elseif($settings['icon_style'] == 'image') {
-			$animation_icon = sprintf('<div class="animation-image %2$s">%1$s</div>', $image, $animation_move );
-		} else {
-			$animation_icon = '';
+		/* ========= ICON MODE ========= */
+		if ($settings['icon_style'] === 'icon' && !empty($settings['icon'])) {
+
+			$icon_html = \Elementor\Addon_Elementor_Icon_manager_free::render_icon(
+				$settings['icon'],
+				['aria-hidden' => 'true']
+			);
+
+			$animation_icon = sprintf(
+				'<div class="animation-icon %1$s">%2$s</div>',
+				esc_attr($animation_move),
+				wp_kses_post($icon_html)
+			);
 		}
 
-		echo sprintf ( 
-			'<div %1$s> 
-				%2$s                
-            </div>',
-            $this->get_render_attribute_string('tf_counter'),
-            $animation_icon
-        );	
-		
+		/* ========= IMAGE MODE ========= */
+		if ($settings['icon_style'] === 'image' && !empty($settings['image']['url'])) {
+
+			$img_url = esc_url($settings['image']['url']);
+
+			// WP image sanitization recommended
+			$img = sprintf(
+				'<img src="%1$s" alt="%2$s">',
+				$img_url,
+				esc_attr__('animation', 'themesflat-addons-for-elementor')
+			);
+
+			$animation_icon = sprintf(
+				'<div class="animation-image %1$s">%2$s</div>',
+				esc_attr($animation_move),
+				wp_kses_post($img)
+			);
+		}
+
+		echo '<div ' . $this->get_render_attribute_string('tf_animation_item_wrapper') . '>';
+		echo wp_kses_post($animation_icon);
+		echo '</div>';
 	}
+
 
 }

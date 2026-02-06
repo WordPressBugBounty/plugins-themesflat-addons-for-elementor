@@ -2,9 +2,9 @@
 Tags: addons, elementor, elementor addon, themesflat, widget
 Contributors: themesflatc2
 Requires at least: 4.9
-Tested up to: 6.7
+Tested up to: 6.9
 Requires PHP: 5.2
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,13 +94,13 @@ Absolutely! It will work with any theme where Elementor works.
 Note that the screenshot is stored in the /screenshots.
 
 == Changelog ==
-= 2.1.3 - jun/7/2024 =
-= 2.0.4 - august/16/2023 =
-= 2.0.3 - august/10/2023 =
-= 2.0.1 - july/07/2023 =
-= 1.9.7 - july/03/2023 =
-= 1.0.1 - 08/07/2020 =
-= 1.0.0 - 20/07/2020 =
+= 2.3.2 - 2025-12-18 =
+= 2.3.1 - 2025-10-16 =
+<ul>
+<li>Fix: Update Banner plugin</li>
+<li>Fix: Update change conflict .elementor-widget-container class which will no longer exist in the new version Elementor 3.32 </li>
+</ul>
+
 
 Initial stable realese
 

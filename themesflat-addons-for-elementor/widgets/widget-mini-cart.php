@@ -1243,49 +1243,85 @@ if (!class_exists('TFMiniCart_Widget_Free')) {
 
 		protected function render($instance = []) {
 			$settings = $this->get_settings_for_display();
-			
-			$count = ThemesFlat_Addon_For_Elementor_Free::themesflat_mini_cart_count();		
+
+			$count = (int) ThemesFlat_Addon_For_Elementor_Free::themesflat_mini_cart_count();
+			$cart_url = esc_url( wc_get_cart_url() );
 			?>
 			<div class="tf-mini-cart">
 				<div class="mini-cart">
-	                <div class="cart-count">
-	                    <div id="mini-cart-click" class="wrap-cart-count">
-	                        <div class="wrap-count-content">
-	                            <div class="inner-cart-count">
-	                                <a class="icon-cart" href="<?php echo wc_get_cart_url(); ?>" title="<?php esc_html__( 'View your shopping cart', 'themesflat-addons-for-elementor' ); ?>"><?php \Elementor\Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] ); ?></a>            
-	                                <a class="cart-contents" href="<?php echo wc_get_cart_url(); ?>" title="<?php esc_html__( 'View your shopping cart', 'themesflat-addons-for-elementor' ); ?>">                
-	                                    <?php
-	                                    if ( $count > 0 ): ?>
-	                                        <span class="cart-contents-count"><?php echo esc_attr( $count ); ?></span>
-	                                    <?php else: ?>
-	                                        <span class="cart-contents-count">0</span>
-	                                    <?php endif; ?>
-	                                </a>
-	                            </div>
-	                            <?php if($settings['style'] == 'icon-text'): ?>
-	                            <div class="content-text">
-	                                <h5><?php echo esc_attr($settings['text']); ?></h5>
-	                                <div>
-		                                <?php echo sprintf('( %1$s <span class="cart-contents-count">%2$s</span> )',esc_attr($settings['text_count']), $count ); ?>
-		                            </div>
-	                            </div>
-	                        	<?php endif; ?>
-	                        </div>
-	                    </div>
-	                    <div class="overlay-mini-cart"></div>
-	                    <div id="canvas-mini-cart" class="widget woocommerce widget_shopping_cart"> 
-	                    	<div class="top-mini-cart">
-		                    	<h4 class="cart-title"><?php echo esc_attr($settings['heading_canvas']); ?></h4> 
-		                    	<span class="cart-close close-icon"><i class="fas fa-times"></i></span>   
-	                    	</div>               	
-	                        <div class="widget_shopping_cart_content"> 
-	                            <?php if ( class_exists( 'woocommerce' ) ) { 
-	                            	if ( ! empty( WC()->cart) ) { woocommerce_mini_cart(); }
-	                            } ?>
-	                        </div>	                    
-	                    </div>
-	                </div>                               
-	            </div>
+					<div class="cart-count">
+						<div id="mini-cart-click" class="wrap-cart-count">
+							<div class="wrap-count-content">
+								<div class="inner-cart-count">
+
+									<a class="icon-cart"
+									href="<?php echo $cart_url; ?>"
+									title="<?php echo esc_attr__( 'View your shopping cart', 'themesflat-addons-for-elementor' ); ?>">
+										<?php
+										// Elementor icon is trusted output
+										if ( ! empty( $settings['icon'] ) ) {
+											\Elementor\Icons_Manager::render_icon(
+												$settings['icon'],
+												[ 'aria-hidden' => 'true' ]
+											);
+										}
+										?>
+									</a>
+
+									<a class="cart-contents"
+									href="<?php echo $cart_url; ?>"
+									title="<?php echo esc_attr__( 'View your shopping cart', 'themesflat-addons-for-elementor' ); ?>">
+										<span class="cart-contents-count">
+											<?php echo esc_html( $count ); ?>
+										</span>
+									</a>
+
+								</div>
+
+								<?php if ( $settings['style'] === 'icon-text' ) : ?>
+									<div class="content-text">
+										<h5>
+											<?php echo esc_html( $settings['text'] ?? '' ); ?>
+										</h5>
+
+										<div>
+											(
+											<?php echo esc_html( $settings['text_count'] ?? '' ); ?>
+											<span class="cart-contents-count">
+												<?php echo esc_html( $count ); ?>
+											</span>
+											)
+										</div>
+									</div>
+								<?php endif; ?>
+
+							</div>
+						</div>
+
+						<div class="overlay-mini-cart"></div>
+
+						<div id="canvas-mini-cart" class="widget woocommerce widget_shopping_cart">
+							<div class="top-mini-cart">
+								<h4 class="cart-title">
+									<?php echo esc_html( $settings['heading_canvas'] ?? '' ); ?>
+								</h4>
+
+								<span class="cart-close close-icon" role="button" aria-label="<?php echo esc_attr__( 'Close cart', 'themesflat-addons-for-elementor' ); ?>">
+									<i class="fas fa-times" aria-hidden="true"></i>
+								</span>
+							</div>
+
+							<div class="widget_shopping_cart_content">
+								<?php
+								if ( class_exists( 'WooCommerce' ) && WC()->cart ) {
+									woocommerce_mini_cart();
+								}
+								?>
+							</div>
+
+						</div>
+					</div>
+				</div>
 			</div>
 			<?php
 		}

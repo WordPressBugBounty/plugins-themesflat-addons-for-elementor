@@ -329,9 +329,9 @@ class TFAnimated_Headline_Widget_Free extends \Elementor\Widget_Base {
         foreach ($settings['repeater_list'] as $key => $repeater_list) {
             if ( $repeater_list['headline_text_animation'] != '' ){
                 if($key == 0){
-                    $html_words .= '<span class="item-text is-visible">'.esc_attr($repeater_list['headline_text_animation']).'</span>';
+                    $html_words .= '<span class="item-text is-visible">'.esc_html($repeater_list['headline_text_animation']).'</span>';
                 }else{
-                    $html_words .= '<span class="item-text ">'.esc_attr($repeater_list['headline_text_animation']).'</span>';
+                    $html_words .= '<span class="item-text ">'.esc_html($repeater_list['headline_text_animation']).'</span>';
                 }                
             }            
         }
@@ -405,11 +405,11 @@ class TFAnimated_Headline_Widget_Free extends \Elementor\Widget_Base {
                 </%1$s>
             </div>',
             \Elementor\Utils::validate_html_tag($settings['headline_html_tag']),
-            esc_attr($settings['headline_before_text']),
-            $html_animation,
-            esc_attr($settings['headline_after_text']),           
-            $break,
-            $highlight
+            esc_html($settings['headline_before_text']),
+            wp_kses_post( $html_animation ),
+            esc_html($settings['headline_after_text']),           
+            esc_attr( $break ),
+            esc_attr( $highlight )
         );
 
     }

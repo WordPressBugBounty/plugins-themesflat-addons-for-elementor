@@ -1244,14 +1244,14 @@ class TFTeam_Widget_Free extends \Elementor\Widget_Base {
 			<div class="team-content <?php echo esc_attr($settings['content_effect']) ?>">
 				<?php if ($settings['team_name'] != ''): ?>
 					<<?php echo \Elementor\Utils::validate_html_tag($settings['name_html_tag']) ?> class="team-name">
-					<a href="<?php echo esc_url($settings['team_link']['url']); ?>" <?php echo esc_attr($target); ?> <?php echo esc_attr($nofollow); ?>><?php echo esc_attr($settings['team_name']); ?></a>
+					<a href="<?php echo esc_url($settings['team_link']['url']); ?>" <?php echo esc_attr($target); ?> <?php echo esc_attr($nofollow); ?>><?php echo esc_html($settings['team_name']); ?></a>
 					</<?php echo \Elementor\Utils::validate_html_tag($settings['name_html_tag']) ?>>
 				<?php endif ?>
 				<?php if ($settings['team_position'] != ''): ?>
-					<div class="team-position"><?php echo esc_attr($settings['team_position']); ?></div>
+					<div class="team-position"><?php echo esc_html($settings['team_position']); ?></div>
 				<?php endif ?>				
 				<?php if ($settings['team_description'] != ''): ?>
-					<div class="team-desc"><?php echo esc_attr($settings['team_description']); ?></div>
+					<div class="team-desc"><?php echo esc_html($settings['team_description']); ?></div>
 				<?php endif ?>				
 				<?php if ($settings['show_social'] == 'yes') : ?>
 					<?php if( $settings['social_inner_avatar'] != 'yes' || $settings['style'] == 'style-2' ) : ?>

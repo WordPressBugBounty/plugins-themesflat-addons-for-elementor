@@ -2513,20 +2513,57 @@ if(!class_exists('TFFlex_Slide_Widget_Free')){
 
 			$class .= 'directionnav-'.$settings['style_directionnav'];
 
+			$allowed_directionnav = ['show','hide'];
+			$directionnav = in_array($settings['style_directionnav'], $allowed_directionnav, true)
+				? $settings['style_directionnav']
+				: 'show';
+
+			$class = 'directionnav-' . esc_attr($directionnav);
+
 			
 			if ($settings['buttons']) {
 				foreach ( $settings['buttons'] as $key => $value ) {
-					if( $key < 3 ) {
-						if ( $value['icon_button_align'] == 'btn-icon-left' ) {
-							$btn_html .= sprintf('<li class="'.$value['btn_delay'].' '.$value['btn_animation'].'">
-											<a href="'.esc_url($value['btn_url']['url']).'" class="button-one elementor-repeater-item-'.$value['_id'].'"><span class="btn-icon-left">%s</span> '.$value['btn_title'].'</a>
-										</li>', \Elementor\Addon_Elementor_Icon_manager_free::render_icon( $value['btn_icon'], [ 'aria-hidden' => 'true' ] ));
-						}else {
-							$btn_html .= sprintf('<li class="'.$value['btn_delay'].' '.$value['btn_animation'].'">
-											<a href="'.esc_url($value['btn_url']['url']).'" class="button-one elementor-repeater-item-'.$value['_id'].'">'.$value['btn_title'].' <span class="btn-icon-right">%s</span></a>
-										</li>', \Elementor\Addon_Elementor_Icon_manager_free::render_icon( $value['btn_icon'], [ 'aria-hidden' => 'true' ] ));
-						}			
-						
+					if ( $key >= 3 ) continue;
+
+					$btn_delay     = esc_attr($value['btn_delay']);
+					$btn_animation = esc_attr($value['btn_animation']);
+					$btn_id        = esc_attr($value['_id']);
+					$btn_title     = esc_html($value['btn_title']);
+					$btn_url       = esc_url($value['btn_url']['url']);
+
+					$icon_html = \Elementor\Addon_Elementor_Icon_manager_free::render_icon(
+						$value['btn_icon'],
+						['aria-hidden' => 'true']
+					);
+
+					if ( $value['icon_button_align'] === 'btn-icon-left' ) {
+						$btn_html .= sprintf(
+							'<li class="%1$s %2$s">
+								<a href="%3$s" class="button-one elementor-repeater-item-%4$s">
+									<span class="btn-icon-left">%5$s</span> %6$s
+								</a>
+							</li>',
+							$btn_delay,
+							$btn_animation,
+							$btn_url,
+							$btn_id,
+							$icon_html,
+							$btn_title
+						);
+					} else {
+						$btn_html .= sprintf(
+							'<li class="%1$s %2$s">
+								<a href="%3$s" class="button-one elementor-repeater-item-%4$s">
+									%6$s <span class="btn-icon-right">%5$s</span>
+								</a>
+							</li>',
+							$btn_delay,
+							$btn_animation,
+							$btn_url,
+							$btn_id,
+							$icon_html,
+							$btn_title
+						);
 					}
 				}
 				$wrap_btn_html = '<ul class="button-group"> '.$btn_html.'</ul>';			
@@ -2536,9 +2573,14 @@ if(!class_exists('TFFlex_Slide_Widget_Free')){
 			<div class="flexslider <?php echo esc_attr($class); ?> " data-height="<?php echo esc_attr($settings['height_slider']['size']); ?>" data-height_tablet="<?php echo esc_attr($settings['height_slider_tablet']['size']); ?>" data-height_mobile="<?php echo esc_attr($settings['height_slider_mobile']['size']); ?>" data-animation_images="<?php echo esc_attr($settings['animation_images']); ?>" data-autoplay="<?php echo esc_attr($settings['slideshow_autoplay']); ?>" data-slideshowSpeed="<?php echo esc_attr($settings['slideshowSpeed']['size']); ?>" data-directionnav="<?php echo esc_attr($settings['directionnav']); ?>" data-controlnav="<?php echo esc_attr($settings['controlnav']); ?>" data-prevtext="<?php echo esc_attr($settings['prev_icon']); ?>" data-nexttext="<?php echo esc_attr($settings['next_icon']); ?>">
 				<ul class="slides">
 					<?php foreach ( $settings['flexslider_list'] as $value ) {
-						if ($value['subtitle_text'] != '') {
-							$subtitle_html = '<h3 class="sub-title '.esc_attr($value['subtitle_delay']).' '.esc_attr($value['subtitle_animation']).'">'.esc_attr($value['subtitle_text']).'</h3>';
-						}
+						if ($value['subtitle_text'] !== '') {
+						$subtitle_html = sprintf(
+							'<h3 class="sub-title %s %s">%s</h3>',
+							esc_attr($value['subtitle_delay']),
+							esc_attr($value['subtitle_animation']),
+							esc_html($value['subtitle_text'])
+						);
+}
 						if ($value['title_text'] != '') {				
 							$title_html = '<h1 class="title '.esc_attr($value['title_delay']).' '.esc_attr($value['title_animation']).'">'.wp_kses_post($value['title_text']).'</h1>';
 						}

@@ -616,26 +616,39 @@ class TFClipping_Mask_Widget_Free extends \Elementor\Widget_Base {
 
 		$title = $html_description = '';
 		
+		$link = isset($settings['link']) && is_array($settings['link']) ? $settings['link'] : [];
 
-		$this->add_render_attribute('title_text', 'href', esc_url($settings['link']['url'] ? $settings['link']['url'] : '#'));
-		if (!empty($settings['link']['is_external'])) {
-			$this->add_render_attribute('title_text', 'target', '_blank');
+		$url = ! empty( $link['url'] ) ? esc_url( $link['url'] ) : '#';
+
+		$this->add_render_attribute( 'title_text', 'href', $url );
+
+		if ( ! empty( $link['is_external'] ) ) {
+			$this->add_render_attribute( 'title_text', 'target', '_blank' );
 		}
-		if (!empty($settings['link']['nofollow'])) {
-			$this->add_render_attribute('title_text', 'rel', 'nofollow');
+
+		if ( ! empty( $link['nofollow'] ) ) {
+			$this->add_render_attribute( 'title_text', 'rel', 'nofollow' );
 		}
+
+		// $this->add_render_attribute('title_text', 'href', esc_url($settings['link']['url'] ? $settings['link']['url'] : '#'));
+		// if (!empty($settings['link']['is_external'])) {
+		// 	$this->add_render_attribute('title_text', 'target', '_blank');
+		// }
+		// if (!empty($settings['link']['nofollow'])) {
+		// 	$this->add_render_attribute('title_text', 'rel', 'nofollow');
+		// }
 		$link_url = $this->get_render_attribute_string('title_text'); 
 
 		if ($settings['title'] != '') {
-			$title = '<'.\Elementor\Utils::validate_html_tag($settings['title_tag']).' class="title">'.esc_attr($settings['title']).'</'.\Elementor\Utils::validate_html_tag($settings['title_tag']).'>';
+			$title = '<'.\Elementor\Utils::validate_html_tag($settings['title_tag']).' class="title">'.esc_html($settings['title']).'</'.\Elementor\Utils::validate_html_tag($settings['title_tag']).'>';
 			if ( $settings['link']['url'] != '' ) {
-				$title = '<'.\Elementor\Utils::validate_html_tag($settings['title_tag']).' class="title"><a '.$link_url . '>'.esc_attr($settings['title']).'</a></'.\Elementor\Utils::validate_html_tag($settings['title_tag']).'>';
+				$title = '<'.\Elementor\Utils::validate_html_tag($settings['title_tag']).' class="title"><a '.$link_url . '>'.esc_html($settings['title']).'</a></'.\Elementor\Utils::validate_html_tag($settings['title_tag']).'>';
 			}
 		}
 		
 
 		if ($settings['description'] != '') {
-			$html_description = '<div class="description">'.esc_attr($settings['description']).'</div>';
+			$html_description = '<div class="description">'.esc_html($settings['description']).'</div>';
 		}
 
 		echo sprintf ( 

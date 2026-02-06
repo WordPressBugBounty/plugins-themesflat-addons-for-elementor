@@ -374,18 +374,52 @@ class TFScrollTop_Widget_Free extends \Elementor\Widget_Base {
 
 	}
 
-	protected function render($instance = []) {
-		$settings = $this->get_settings_for_display();
-		$this->add_render_attribute( 'tf_scroll_top', ['id' => "tf-scroll-top", 'class' => ['tf-scroll-top', $settings['types'], $settings['scroll_top_position'], $settings['scroll_top_style_show'] ], 'data-tabid' => $this->get_id()] );
 
+
+	protected function render( $instance = [] ) {
+		$settings = $this->get_settings_for_display();
+
+		$type      = ! empty( $settings['types'] ) ? esc_attr( $settings['types'] ) : 'only-show';
+		$position  = ! empty( $settings['scroll_top_position'] ) ? esc_attr( $settings['scroll_top_position'] ) : '';
+		$styleShow = ! empty( $settings['scroll_top_style_show'] ) ? esc_attr( $settings['scroll_top_style_show'] ) : '';
+
+		// sanitize icon setting safely
+		$icon = ! empty( $settings['icon'] ) ? $settings['icon'] : [];
+
+		$this->add_render_attribute(
+			'tf_scroll_top',
+			[
+				'id'    => 'tf-scroll-top',
+				'class' => [
+					'tf-scroll-top',
+					$type,
+					$position,
+					$styleShow,
+				],
+				'data-tabid' => esc_attr( $this->get_id() ),
+			]
+		);
 		?>
-		<div <?php echo $this->get_render_attribute_string('tf_scroll_top'); ?> data-type="<?php echo esc_attr($settings['types']); ?>">
+		
+		<div <?php echo $this->get_render_attribute_string( 'tf_scroll_top' ); ?>
+			data-type="<?php echo esc_attr( $type ); ?>">
 			<a href="#" class="inner-scroll-top">
-				<span class="icon-scroll-top"><?php \Elementor\Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
+
+				<span class="icon-scroll-top">
+					<?php
+					\Elementor\Icons_Manager::render_icon(
+						$icon,
+						[ 'aria-hidden' => 'true' ]
+					);
+					?>
+				</span>
+
 			</a>
 		</div>
+
 		<?php
 	}
+
 
 		
 

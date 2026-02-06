@@ -1385,7 +1385,18 @@ class TFIconBox_Widget_Free extends \Elementor\Widget_Base {
 					<?php endif; ?>	
 
 					<div class="content">
-						<<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?> class="title"><?php echo esc_attr($settings['title_text']); ?></<?php echo \Elementor\Utils::validate_html_tag($settings['title_tag']);?>>
+						<?php
+						$title = isset($settings['title_text'])
+							? sanitize_text_field($settings['title_text'])
+							: '';
+
+						$tag = \Elementor\Utils::validate_html_tag($settings['title_tag']);
+						
+						?>
+						<<?php echo $tag; ?> class="title">
+							<?php echo esc_html($title); ?>
+						</<?php echo $tag; ?>>
+						
 						<?php echo sprintf('<div class="description">%s</div>', wp_kses_post($settings['description_text'])); ?>
 						
 						<?php if ( $settings['show_button'] == 'yes' ): 
@@ -1417,8 +1428,12 @@ class TFIconBox_Widget_Free extends \Elementor\Widget_Base {
 										}
 									}
 
-									if ( $settings['button_text'] != '' ) {
-										echo esc_attr( $settings['button_text'] );
+									$button_text = isset($settings['button_text'])
+										? sanitize_text_field($settings['button_text'])
+										: '';
+
+									if ( $button_text !== '' ) {
+										echo esc_html( $button_text );
 									}
 
 									if ($settings['button_icon_position'] == 'bt_icon_after' ) {
@@ -1467,7 +1482,18 @@ class TFIconBox_Widget_Free extends \Elementor\Widget_Base {
 							
 
 							$this->add_render_attribute('button_link', 'class','tf-button '.esc_attr($settings['button_icon_position']).' '.esc_attr($btn_animation));
-							$this->add_render_attribute('button_link', 'href', esc_url($settings['link']['url'] ? $settings['link']['url'] : '#'));
+							
+							$link_url = '#';
+							if ( ! empty($settings['link']['url']) ) {
+								$link_url = esc_url_raw( $settings['link']['url'] );
+							}
+
+							$this->add_render_attribute(
+								'button_link',
+								'href',
+								esc_url( $link_url )
+							);
+
 							if (!empty($settings['link']['is_external'])) {
 								$this->add_render_attribute('button_link', 'target', '_blank');
 							}

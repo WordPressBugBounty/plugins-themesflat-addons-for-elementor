@@ -36,7 +36,7 @@ class TF_Google_Maps_Widget_Free extends \Elementor\Widget_Base {
 		);
 
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-			$api_key = get_option( 'elementor_google_maps_api_key' );
+			$api_key = esc_html( get_option( 'elementor_google_maps_api_key' ) );
 
 			if ( ! $api_key ) {
 				$this->add_control(
@@ -190,37 +190,46 @@ class TF_Google_Maps_Widget_Free extends \Elementor\Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		
+		$address = isset($settings['address'])
+			? sanitize_text_field($settings['address'])
+			: '';
 
-		if ( empty( $settings['address'] ) ) {
+		if ( empty($address) ) {
 			return;
 		}
 
-		if ( 0 === absint( $settings['zoom']['size'] ) ) {
-			$settings['zoom']['size'] = 10;
-		}
+		$zoom = isset($settings['zoom']['size']) && absint($settings['zoom']['size']) > 0
+			? absint($settings['zoom']['size'])
+			: 10;
 
-		$api_key = esc_html( get_option( 'elementor_google_maps_api_key' ) );
+		$api_key = sanitize_text_field(
+			get_option( 'elementor_google_maps_api_key' )
+		);
 
 		$params = [
-			rawurlencode( $settings['address'] ),
-			absint( $settings['zoom']['size'] ),
+			rawurlencode($address),
+			$zoom,
 		];
 
-		if ( $api_key ) {
-			$params[] = $api_key;
+		if ( ! empty($api_key) ) {
+			$params[] = rawurlencode($api_key);
 
-			$url = 'https://www.google.com/maps/embed/v1/place?key=%3$s&q=%1$s&amp;zoom=%2$d';
+			$url = 'https://www.google.com/maps/embed/v1/place?key=%3$s&q=%1$s&zoom=%2$d';
 		} else {
-			$url = 'https://maps.google.com/maps?q=%1$s&amp;t=m&amp;z=%2$d&amp;output=embed&amp;iwloc=near';
+			$url = 'https://maps.google.com/maps?q=%1$s&t=m&z=%2$d&output=embed&iwloc=near';
 		}
+
+		$map_url = esc_url( vsprintf( $url, $params ) );
+
 
 		?>
 		<div class="elementor-custom-embed">
 			<iframe
-					src="<?php echo esc_url( vsprintf( $url, $params ) ); ?>"
-					title="<?php echo esc_attr( $settings['address'] ); ?>"
-					aria-label="<?php echo esc_attr( $settings['address'] ); ?>"
-			></iframe>
+				src="<?php echo $map_url; ?>"
+				title="<?php echo esc_attr($address); ?>"
+				aria-label="<?php echo esc_attr($address); ?>">
+			</iframe>
 		</div>
 		<?php
 	}	

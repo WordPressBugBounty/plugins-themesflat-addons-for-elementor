@@ -481,82 +481,132 @@ class TFListImage_Widget_Free extends \Elementor\Widget_Base {
 	protected function render($instance = []) {
 		$settings = $this->get_settings_for_display();
 
-		$hover_image = $settings['hover_image'] == 'yes' ? 'hover-image' : '';
-		$hover_stop = $settings['hover_stop'] == 'yes' ? 'hover-stop' : '';
+		$hover_image = ($settings['hover_image'] === 'yes') ? 'hover-image' : '';
+		$hover_stop  = ($settings['hover_stop'] === 'yes') ? 'hover-stop' : '';
 
-		$this->add_render_attribute( 'tf_list-image', ['id' => "tf-list-image-{$this->get_id()}", 'class' => ['tf-list-image', $hover_image, $hover_stop], 'data-tabid' => $this->get_id()] );	
+		$this->add_render_attribute(
+			'tf_list-image',
+			[
+				'id'    => 'tf-list-image-' . esc_attr($this->get_id()),
+				'class' => ['tf-list-image', $hover_image, $hover_stop],
+				'data-tabid' => esc_attr($this->get_id()),
+			]
+		);
 
-		$content = $content2 = $title = $before_title = $hover_image = '';	
+		$content = $content2 = '';
 
-		if($settings['partner_style'] == 'style-image') {
-		foreach ( $settings['list'] as $index => $item ) {
-			$link_image = esc_url($item['link_image']['url']);
-			$target = esc_attr($item['link_image']['is_external']) ? ' target="_blank"' : '';
-			$nofollow = esc_attr($item['link_image']['nofollow']) ? ' rel="nofollow"' : '';
-			$url = esc_url($item['image']['url']);
+		/* ================= STYLE IMAGE ================= */
 
-			if ($item['image'] != '') {
-				$image = sprintf( '<div class="image">
-					<a href="%2$s" %3$s %4$s><img src="%1$s" alt="image"></a>
-				</div>',$url, $link_image, $target, $nofollow);
-			}
-			$content .= sprintf( '
-								
-									<div class="item">
-										%1$s
-									</div>
-								', $image);
-		}	
-		}else {
-			foreach ( $settings['list2'] as $index => $item2 ) {
-				$link_text = esc_url($item2['link_text']['url']);
-				$target = esc_attr($item2['link_text']['is_external']) ? ' target="_blank"' : '';
-				$nofollow = esc_attr($item2['link_text']['nofollow']) ? ' rel="nofollow"' : '';
-				$text = esc_attr($item2['partner_text']);
-				$icon_text = \Elementor\Addon_Elementor_Icon_manager_free::render_icon( $item2['icon_text'], [ 'aria-hidden' => 'true' ]);
-				if ($item2['partner_text'] != '') {
-					$text_render = sprintf( '<div class="image">
-						<a href="%2$s" %3$s %4$s> <span class="icon"> %5$s </span> <span class="text"> %1$s </span> </a>
-					</div>',$text, $link_text, $target, $nofollow, $icon_text);
+		if ($settings['partner_style'] === 'style-image' && !empty($settings['list'])) {
+
+			foreach ($settings['list'] as $item) {
+
+				if (empty($item['image']['url'])) {
+					continue;
 				}
-				$content2 .= sprintf( '
-									
-										<div class="item list-text">
-											%1$s
-										</div>
-									', $text_render);
+
+				$this->add_render_attribute('image_link', 'href', esc_url($item['link_image']['url'] ?? '#'));
+
+				if (!empty($item['link_image']['is_external'])) {
+					$this->add_render_attribute('image_link', 'target', '_blank');
+				}
+
+				if (!empty($item['link_image']['nofollow'])) {
+					$this->add_render_attribute('image_link', 'rel', 'nofollow');
+				}
+
+				$image = sprintf(
+					'<div class="image">
+						<a %2$s>
+							<img src="%1$s" alt="" />
+						</a>
+					</div>',
+					esc_url($item['image']['url']),
+					$this->get_render_attribute_string('image_link')
+				);
+
+				$content .= '<div class="item">' . $image . '</div>';
+
+				$this->remove_render_attribute('image_link');
+			}
+
+		/* ================= STYLE TEXT ================= */
+
+		} elseif (!empty($settings['list2'])) {
+
+			foreach ($settings['list2'] as $item2) {
+
+				if (empty($item2['partner_text'])) {
+					continue;
+				}
+
+				$text = esc_html( sanitize_text_field($item2['partner_text']) );
+
+				$this->add_render_attribute('text_link', 'href', esc_url($item2['link_text']['url'] ?? '#'));
+
+				if (!empty($item2['link_text']['is_external'])) {
+					$this->add_render_attribute('text_link', 'target', '_blank');
+				}
+
+				if (!empty($item2['link_text']['nofollow'])) {
+					$this->add_render_attribute('text_link', 'rel', 'nofollow');
+				}
+
+				// Icon whitelist
+				$icon_html = '';
+				if (!empty($item2['icon_text'])) {
+					$raw_icon = \Elementor\Addon_Elementor_Icon_manager_free::render_icon(
+						$item2['icon_text'],
+						['aria-hidden' => 'true']
+					);
+
+					$icon_html = wp_kses($raw_icon, [
+						'i' => ['class' => []],
+						'svg' => [
+							'class' => [],
+							'xmlns' => [],
+							'viewBox' => [],
+							'aria-hidden' => [],
+							'role' => [],
+						],
+						'path' => [
+							'd' => [],
+							'fill' => [],
+						],
+					]);
+				}
+
+				$content2 .= sprintf(
+					'<div class="item list-text">
+						<div class="image">
+							<a %3$s>
+								<span class="icon">%2$s</span>
+								<span class="text">%1$s</span>
+							</a>
+						</div>
+					</div>',
+					$text,
+					$icon_html,
+					$this->get_render_attribute_string('text_link')
+				);
+
+				$this->remove_render_attribute('text_link');
 			}
 		}
 
+		/* ================= OUTPUT ================= */
 
-		if($settings['partner_style'] == 'style-image') {
-			echo sprintf ( 
-				'<div %1$s> 
-					<div class="box-item">
-					%2$s   
-					</div>
-					<div class="box-item">
-					%2$s   
-					</div>	
-				</div>',
-				$this->get_render_attribute_string('tf_list-image'),
-				$content
-			);	
-		} else {
-			echo sprintf ( 
-				'<div %1$s> 
-					<div class="box-item">
-					%2$s   
-					</div>
-					<div class="box-item">
-					%2$s   
-					</div>	
-				</div>',
-				$this->get_render_attribute_string('tf_list-image'),
-				$content2
-			);	
-		}
-		
+		$output = ($settings['partner_style'] === 'style-image') ? $content : $content2;
+
+		echo sprintf(
+			'<div %1$s>
+				<div class="box-item">%2$s</div>
+				<div class="box-item">%2$s</div>
+			</div>',
+			$this->get_render_attribute_string('tf_list-image'),
+			$output
+		);
 	}
+
 
 }

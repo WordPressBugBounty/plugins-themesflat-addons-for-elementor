@@ -1187,11 +1187,11 @@ class TFAccordion_Widget_Free extends \Elementor\Widget_Base {
 
 			if ($value['list_title'] != '') {
 				if ($settings['icon_position'] == 'icon_before_after') {
-					$html_title = sprintf('<div class="accordion-title %4$s %5$s">%2$s <span class="title-text">%1$s</span> %3$s</div>', esc_attr($value['list_title']), $icon_title, $icon_title_right, esc_attr($settings['icon_position']), esc_attr($value['set_active']));
+					$html_title = sprintf('<div class="accordion-title %4$s %5$s">%2$s <span class="title-text">%1$s</span> %3$s</div>', esc_html($value['list_title']), $icon_title, $icon_title_right, esc_attr($settings['icon_position']), esc_attr($value['set_active']));
 				}else if ($settings['icon_position'] == 'icon_before') {
-					$html_title = sprintf('<div class="accordion-title %3$s %4$s">%2$s <span class="title-text">%1$s</span></div>', esc_attr($value['list_title']), $icon_title, esc_attr($settings['icon_position']), esc_attr($value['set_active']));
+					$html_title = sprintf('<div class="accordion-title %3$s %4$s">%2$s <span class="title-text">%1$s</span></div>', esc_html($value['list_title']), $icon_title, esc_attr($settings['icon_position']), esc_attr($value['set_active']));
 				}else{
-					$html_title = sprintf('<div class="accordion-title %3$s %4$s"><span class="title-text">%1$s</span> %2$s</div>', esc_attr($value['list_title']), $icon_title_right, esc_attr($settings['icon_position']), esc_attr($value['set_active']));
+					$html_title = sprintf('<div class="accordion-title %3$s %4$s"><span class="title-text">%1$s</span> %2$s</div>', esc_html($value['list_title']), $icon_title_right, esc_attr($settings['icon_position']), esc_attr($value['set_active']));
 				}
 				
 			}
@@ -1205,7 +1205,7 @@ class TFAccordion_Widget_Free extends \Elementor\Widget_Base {
 		            $html_content = sprintf('<div class="accordion-content">%1$s</div>', $frontend->get_builder_content_for_display(esc_attr($post_id), true));
 		        }
 			}else {
-				$html_content = sprintf('<div class="accordion-content">%1$s</div>', do_shortcode( ($value['list_content'] )));
+				$html_content = sprintf('<div class="accordion-content">%1$s</div>', do_shortcode( wp_kses_post($value['list_content'] )));
 			}			
 
 			$accordion_item .= sprintf('<div class="tf-accordion-item %3$s">%1$s %2$s</div>', $html_title, $html_content, ($value['set_active']));

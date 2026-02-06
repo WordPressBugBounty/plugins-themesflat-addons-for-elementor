@@ -308,30 +308,49 @@ class TF_Addon_Video_Widget_Free extends \Elementor\Widget_Base {
 
 	}	
 
-	protected function render($instance = []) {
+	protected function render( $instance = [] ) {
+
 		$settings = $this->get_settings_for_display();
 
-		$this->add_render_attribute( 'tf_addon_video_popup', ['id' => "tf-video-popup-{$this->get_id()}", 'class' => ['tf-video-popup'], 'data-tabid' => $this->get_id()] );
+		$video_type = ! empty( $settings['video_type'] ) ? $settings['video_type'] : 'youtube';
 
-		$blurred_text = $icon = $video_url = '';
+		$icon = ! empty( $settings['icon'] ) ? $settings['icon'] : [];
 
-		$video_url = esc_url($settings[ $settings['video_type'] . '_url' ]);
+		$animation = ! empty( $settings['tf_animation'] ) ? esc_attr( $settings['tf_animation'] ) : '';
 
-		$icon = \Elementor\Addon_Elementor_Icon_manager_free::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ]);
+		$video_url = '';
+		if ( ! empty( $settings[ $video_type . '_url' ] ) ) {
+			$video_url = esc_url( $settings[ $video_type . '_url' ] );
+		}
 
+		$this->add_render_attribute(
+			'tf_addon_video_popup',
+			[
+				'id'        => 'tf-video-popup-' . esc_attr( $this->get_id() ),
+				'class'     => 'tf-video-popup',
+				'data-tabid'=> esc_attr( $this->get_id() ),
+			]
+		);
+		?>
 
-        echo sprintf ( 
-			'<div %1$s>
-				<div class="wrap-icon">				
-					<a class="video-icon popup-video %4$s" href="%2$s">%3$s</a>
-				</div>				
-            </div>',
-            $this->get_render_attribute_string('tf_addon_video_popup'),
-            $video_url,
-            $icon,
-            esc_attr($settings['tf_animation'])
-        );	
-		
+		<div <?php echo $this->get_render_attribute_string( 'tf_addon_video_popup' ); ?>>
+			<div class="wrap-icon">
+				<a 
+					class="video-icon popup-video <?php echo $animation; ?>" 
+					href="<?php echo $video_url; ?>"
+				>
+					<?php
+					\Elementor\Icons_Manager::render_icon( 
+						$icon,
+						[ 'aria-hidden' => 'true' ] 
+					);
+					?>
+				</a>
+			</div>
+		</div>
+
+		<?php
 	}
+
 
 }

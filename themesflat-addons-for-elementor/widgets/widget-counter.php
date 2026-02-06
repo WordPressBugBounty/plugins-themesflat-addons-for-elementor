@@ -676,6 +676,27 @@ class TFCounter_Widget_Free extends \Elementor\Widget_Base {
 			$icon_html = sprintf ('<div class="flat-icon"><span class="count-circle-sub">%1$s</span></div>', $icon_name);
 		}		
 
+		$ending_number = isset($settings['ending_number']) ? (int) $settings['ending_number'] : 0;
+		$prefix        = isset($settings['prefix']) ? $settings['prefix'] : '';
+		$suffix        = isset($settings['suffix']) ? $settings['suffix'] : '';
+		$title         = isset($settings['title']) ? $settings['title'] : '';
+
+		$allowed_tags = ['h1','h2','h3','h4','h5','h6'];
+		$title_tag = in_array($settings['title_tag'], $allowed_tags, true)
+			? $settings['title_tag']
+			: 'h3';
+
+		$allowed_separator = ['default', 'dot'];
+		$separator = in_array($settings['separator'], $allowed_separator, true)
+			? $settings['separator']
+			: 'default';
+
+		$allowed_icon_pos = ['counter-icon-top','counter-icon-left','counter-icon-right'];
+		$class = in_array($settings['icon_possible'], $allowed_icon_pos, true)
+			? esc_attr($settings['icon_possible'])
+			: '';
+
+
 		echo sprintf ( 
 			'<div class="flat-counter %5$s %5$s"> 
 				<div class="inner">
@@ -691,13 +712,13 @@ class TFCounter_Widget_Free extends \Elementor\Widget_Base {
 				</div>
             </div>',
             $ending_number,
-            $prefix,
-            $suffix,
-            $title,
-            $class,
-            $icon_html,
-            $settings['title_tag'],
-            $settings['separator']
+			esc_html($prefix),
+			esc_html($suffix),
+			esc_html($title),
+			$class,
+			$icon_html,
+			esc_html($title_tag),
+			esc_attr($separator)
         );
 	}
 
