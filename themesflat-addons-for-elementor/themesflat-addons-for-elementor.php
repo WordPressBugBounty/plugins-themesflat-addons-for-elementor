@@ -4,13 +4,13 @@ Plugin Name: Themesflat Addons For Elementor
 Description: The theme's components
 Author: Themesflat
 Author URI: http://themesflat-addons.com/
-Version: 2.3.2
+Version: 2.3.3
 Text Domain: themesflat-addons-for-elementor
 Domain Path: /languages
 
-WC tested up to: 10.4
-Elementor tested up to: 3.33
-Elementor Pro tested up to: 3.33
+WC tested up to: 10.6
+Elementor tested up to: 3.35
+Elementor Pro tested up to: 3.35
 
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -192,53 +192,6 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 
     }
-
-    /*public function tf_admin_notice_missing_woocommerce_plugin(){
-        $message = sprintf(
-            esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'themesflat-addons-for-elementor' ),
-            '<strong>' . esc_html__( 'TF Woo Product Grid Addon For Elementor', 'themesflat-addons-for-elementor' ) . '</strong>',
-            '<strong>' . esc_html__( 'WooCommerce', 'themesflat-addons-for-elementor' ) . '</strong>'
-        );
-
-        printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-    }
-    public function tf_admin_notice_compare_quick_view_wishlist(){
-        $message = sprintf(
-            esc_html__( '"%1$s" If you want to use "%2$s" then install the following Plugin.', 'themesflat-addons-for-elementor' ),
-            '<strong>' . esc_html__( 'TF Woo Product Grid Addon For Elementor', 'themesflat-addons-for-elementor' ) . '</strong>',
-            '<strong>' . esc_html__( 'Compare, Quick View, Wishlist', 'themesflat-addons-for-elementor' ) . '</strong>'
-        );
-
-        $button_compare_text = esc_html__( 'Plugin Compare', 'themesflat-addons-for-elementor' );
-        $button_link_compare = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=yith-woocommerce-compare' ), 'install-plugin_yith-woocommerce-compare' );
-        $button_quick_view_text = esc_html__( 'Plugin Quick View', 'themesflat-addons-for-elementor' );
-        $button_link_quick_view = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=yith-woocommerce-quick-view' ), 'install-plugin_yith-woocommerce-quick-view');
-        $button_wishlist_text = esc_html__( 'Plugin Wishlist', 'themesflat-addons-for-elementor' );
-        $button_link_wishlist = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=yith-woocommerce-wishlist' ), 'install-plugin_yith-woocommerce-wishlist' );
-
-        $btn_install_compare = '<a class="button button-primary" target="_blank" href="'.esc_url( $button_link_compare ).'">'.esc_html( $button_compare_text ).'</a>';
-        if( class_exists( 'YITH_WOOCOMPARE' ) ) {            
-            $btn_install_compare = '';
-        }
-
-        $btn_install_quick_view = '<a class="button button-primary" target="_blank" href="'.esc_url( $button_link_quick_view ).'">'.esc_html( $button_quick_view_text ).'</a>';
-        if( class_exists( 'YITH_WCQV' ) ) {            
-            $btn_install_quick_view = '';
-        }
-
-        $btn_install_wishlist = '<a class="button button-primary" target="_blank" href="'.esc_url( $button_link_wishlist ).'">'.esc_html( $button_wishlist_text ).'</a>';
-        if( class_exists( 'YITH_WCWL' ) ) {            
-            $btn_install_wishlist = '';
-        }
-
-        if ( is_admin() ) {
-            if( class_exists( 'YITH_WCWL' ) && class_exists( 'YITH_WOOCOMPARE' ) && class_exists( 'YITH_WCQV' ) ) {
-                
-            }else {
-                printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p> <p>%2$s %3$s %4$s</p></div>', $message, $btn_install_compare, $btn_install_quick_view, $btn_install_wishlist );
-            }
-        }        
-    }*/
 
     public function init_widgets() {
 
@@ -939,46 +892,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         return false;
     }
 
-    // public function tf_header_footer_save_meta( $post_id ) {
-    //     if ( 'order' === get_post_type( $post_id ) && 'yes' === get_option( 'woocommerce_enable_hpos', 'no' ) ) {
-    //         $order = wc_get_order( $post_id );
-    //         if ( $order ) {
-    //             if ( isset( $_POST['tfhf_template_type'] ) ) {
-    //                 $order->update_meta_data( 'tfhf_template_type', esc_attr( $_POST['tfhf_template_type'] ) );
-    //             }
-
-    //             $target_locations = self::get_format_rule_value( $_POST, 'tfhf-target-rules-location' );
-    //             $order->update_meta_data( 'tfhf_template_include_locations', $target_locations );
-
-    //             $target_exclusion = self::get_format_rule_value( $_POST, 'tfhf-target-rules-exclusion' );
-    //             $order->update_meta_data( 'tfhf_template_exclude_locations', $target_exclusion );
-
-    //             $order->save();
-    //         }
-    //     } else {
-    //         if ( isset( $_POST['tfhf_template_type'] ) ) {
-    //             update_post_meta( $post_id, 'tfhf_template_type', esc_attr( $_POST['tfhf_template_type'] ) );
-    //         }
-
-    //         if ( ! isset( $_POST['tfhf_meta_nounce'] ) || ! wp_verify_nonce( $_POST['tfhf_meta_nounce'], 'tfhf_meta_nounce' ) ) {
-    //             return;
-    //         }
-            
-    //         if ( ! current_user_can( 'edit_posts' ) ) {
-    //             return;
-    //         }
-
-    //         $target_locations = self::get_format_rule_value( $_POST, 'tfhf-target-rules-location' );
-    //         update_post_meta( $post_id, 'tfhf_template_include_locations', $target_locations );
-
-    //         $target_exclusion = self::get_format_rule_value( $_POST, 'tfhf-target-rules-exclusion' );        
-    //         update_post_meta( $post_id, 'tfhf_template_exclude_locations', $target_exclusion );
-    //     }
-
-    //     return false;
-    // }
-
-
+    
     public function tf_header_footer_load_canvas_template( $single_template ) {
         global $post;
 
@@ -1111,34 +1025,7 @@ final class ThemesFlat_Addon_For_Elementor_Free {
         <?php
     } 
 
-    /*========================================= 
-    post 
-    ======================================== */
-        // static function tf_get_post_types() {
-        //     $post_type_args = [
-        //         'show_in_nav_menus' => true,
-        //     ];
-        //     $post_types = get_post_types($post_type_args, 'objects');
-
-        //     foreach ( $post_types as $post_type ) {
-        //         $post_type_name[$post_type->name] = $post_type->label;      
-        //     }
-        //     return $post_type_name;
-        // }
-
-        // static function tf_get_taxonomies( $category = 'category' ){
-        //     $category_posts = get_terms( 
-        //         array(
-        //             'taxonomy' => $category,
-        //         )
-        //     );
-            
-        //     foreach ( $category_posts as $category_post ) {
-        //         $category_posts_name[$category_post->slug] = $category_post->name;      
-        //     }
-        //     return $category_posts_name;
-        // }  
-
+  
     /*========================================= 
     post 
     ======================================== */
@@ -1854,11 +1741,15 @@ echo ( $output );
         }
 
         public function get_posts_by_conditions( $post_type, $option ) {
-            global $wpdb;
-            global $post;
+            global $wpdb, $post;
 
-            $post_type = $post_type ? esc_sql( $post_type ) : esc_sql( $post->post_type );
+            // fallback post_type
+            $post_type = $post_type ? sanitize_key( $post_type ) : ( isset( $post->post_type ) ? sanitize_key( $post->post_type ) : '' );
+            if ( empty( $post_type ) ) {
+                return [];
+            }
 
+            // cache
             if ( is_array( self::$current_page_data ) && isset( self::$current_page_data[ $post_type ] ) ) {
                 return apply_filters( 'tfhf_get_display_posts_by_conditions', self::$current_page_data[ $post_type ], $post_type );
             }
@@ -1867,99 +1758,130 @@ echo ( $output );
 
             self::$current_page_data[ $post_type ] = array();
 
-            $option['current_post_id'] = self::$current_page_data['ID'];
+            // meta option post (giữ nguyên logic cũ)
+            $option['current_post_id'] = isset( self::$current_page_data['ID'] ) ? self::$current_page_data['ID'] : false;
             $meta_header               = self::get_meta_option_post( $post_type, $option );
 
             if ( false === $meta_header ) {
-                $current_post_type = esc_sql( get_post_type() );
+
+                $current_post_type = sanitize_key( get_post_type() );
                 $current_post_id   = false;
                 $q_obj             = get_queried_object();
 
-                $location = isset( $option['location'] ) ? esc_sql( $option['location'] ) : '';
+                $location = isset( $option['location'] ) ? sanitize_key( $option['location'] ) : '';
 
-                $query = "SELECT p.ID, pm.meta_value FROM {$wpdb->postmeta} as pm
-                            INNER JOIN {$wpdb->posts} as p ON pm.post_id = p.ID
-                            WHERE pm.meta_key = '{$location}'
-                            AND p.post_type = '{$post_type}'
-                            AND p.post_status = 'publish'";
+                // Base query: PREPARE
+                $base_sql = $wpdb->prepare(
+                    "SELECT p.ID, pm.meta_value
+                    FROM {$wpdb->postmeta} pm
+                    INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+                    WHERE pm.meta_key = %s
+                    AND p.post_type = %s
+                    AND p.post_status = 'publish'",
+                    $location,
+                    $post_type
+                );
 
-                $orderby = ' ORDER BY p.post_date DESC';
+                $orderby = " ORDER BY p.post_date DESC";
 
-                $meta_args = "pm.meta_value LIKE '%\"basic-global\"%'";
+                // Build LIKE conditions safely
+                $likes = array();
+                $likes[] = '%"basic-global"%';
 
                 switch ( $current_page_type ) {
                     case 'is_404':
-                        $meta_args .= " OR pm.meta_value LIKE '%\"special-404\"%'";
+                        $likes[] = '%"special-404"%';
                         break;
+
                     case 'is_search':
-                        $meta_args .= " OR pm.meta_value LIKE '%\"special-search\"%'";
+                        $likes[] = '%"special-search"%';
                         break;
+
                     case 'is_archive':
                     case 'is_tax':
                     case 'is_date':
                     case 'is_author':
-                        $meta_args .= " OR pm.meta_value LIKE '%\"basic-archives\"%'";
-                        $meta_args .= " OR pm.meta_value LIKE '%\"{$current_post_type}|all|archive\"%'";
+                        $likes[] = '%"basic-archives"%';
+                        $likes[] = '%"' . $current_post_type . '|all|archive"%';
 
-                        if ( 'is_tax' == $current_page_type && ( is_category() || is_tag() || is_tax() ) ) {
-                            if ( is_object( $q_obj ) ) {
-                                $meta_args .= " OR pm.meta_value LIKE '%\"{$current_post_type}|all|taxarchive|{$q_obj->taxonomy}\"%'";
-                                $meta_args .= " OR pm.meta_value LIKE '%\"tax-{$q_obj->term_id}\"%'";
-                            }
-                        } elseif ( 'is_date' == $current_page_type ) {
-                            $meta_args .= " OR pm.meta_value LIKE '%\"special-date\"%'";
-                        } elseif ( 'is_author' == $current_page_type ) {
-                            $meta_args .= " OR pm.meta_value LIKE '%\"special-author\"%'";
+                        if ( 'is_tax' === $current_page_type && ( is_category() || is_tag() || is_tax() ) && is_object( $q_obj ) ) {
+                            $tax = sanitize_key( $q_obj->taxonomy );
+                            $term_id = absint( $q_obj->term_id );
+
+                            $likes[] = '%"' . $current_post_type . '|all|taxarchive|' . $tax . '"%';
+                            $likes[] = '%"tax-' . $term_id . '"%';
+                        } elseif ( 'is_date' === $current_page_type ) {
+                            $likes[] = '%"special-date"%';
+                        } elseif ( 'is_author' === $current_page_type ) {
+                            $likes[] = '%"special-author"%';
                         }
                         break;
+
                     case 'is_home':
-                        $meta_args .= " OR pm.meta_value LIKE '%\"special-blog\"%'";
+                        $likes[] = '%"special-blog"%';
                         break;
+
                     case 'is_front_page':
-                        $current_id      = esc_sql( get_the_id() );
+                        $current_id      = absint( get_the_id() );
                         $current_post_id = $current_id;
-                        $meta_args      .= " OR pm.meta_value LIKE '%\"special-front\"%'";
-                        $meta_args      .= " OR pm.meta_value LIKE '%\"{$current_post_type}|all\"%'";
-                        $meta_args      .= " OR pm.meta_value LIKE '%\"post-{$current_id}\"%'";
+
+                        $likes[] = '%"special-front"%';
+                        $likes[] = '%"' . $current_post_type . '|all"%';
+                        $likes[] = '%"post-' . $current_id . '"%';
                         break;
+
                     case 'is_singular':
-                        $current_id      = esc_sql( get_the_id() );
+                        $current_id      = absint( get_the_id() );
                         $current_post_id = $current_id;
-                        $meta_args      .= " OR pm.meta_value LIKE '%\"basic-singulars\"%'";
-                        $meta_args      .= " OR pm.meta_value LIKE '%\"{$current_post_type}|all\"%'";
-                        $meta_args      .= " OR pm.meta_value LIKE '%\"post-{$current_id}\"%'";
 
-                        $taxonomies = get_object_taxonomies( $q_obj->post_type );
-                        $terms      = wp_get_post_terms( $q_obj->ID, $taxonomies );
+                        $likes[] = '%"basic-singulars"%';
+                        $likes[] = '%"' . $current_post_type . '|all"%';
+                        $likes[] = '%"post-' . $current_id . '"%';
 
-                        foreach ( $terms as $term ) {
-                            $meta_args .= " OR pm.meta_value LIKE '%\"tax-{$term->term_id}-single-{$term->taxonomy}\"%'";
+                        if ( is_object( $q_obj ) && ! empty( $q_obj->post_type ) ) {
+                            $taxonomies = get_object_taxonomies( $q_obj->post_type );
+                            $terms      = wp_get_post_terms( $q_obj->ID, $taxonomies );
+
+                            if ( ! is_wp_error( $terms ) ) {
+                                foreach ( $terms as $term ) {
+                                    $term_id = absint( $term->term_id );
+                                    $tax = sanitize_key( $term->taxonomy );
+                                    $likes[] = '%"tax-' . $term_id . '-single-' . $tax . '"%';
+                                }
+                            }
                         }
+                        break;
 
-                        break;
                     case 'is_woo_shop_page':
-                        $meta_args .= " OR pm.meta_value LIKE '%\"special-woo-shop\"%'";
+                        $likes[] = '%"special-woo-shop"%';
                         break;
+
                     case '':
-                        $current_post_id = get_the_id();
+                    default:
+                        $current_post_id = absint( get_the_id() );
                         break;
                 }
 
-                $posts  = $wpdb->get_results( "SELECT p.ID, pm.meta_value FROM {$wpdb->postmeta} as pm
-                INNER JOIN {$wpdb->posts} as p ON pm.post_id = p.ID
-                WHERE pm.meta_key = '{$location}'
-                AND p.post_type = '{$post_type}'
-                AND p.post_status = 'publish' " . ' AND (' . $meta_args . ')' . ' ORDER BY p.post_date DESC' );            
+                // Build ( pm.meta_value LIKE %s OR ... ) with prepare
+                $like_sql_parts = array();
+                foreach ( $likes as $like ) {
+                    $like_sql_parts[] = $wpdb->prepare( "pm.meta_value LIKE %s", $like );
+                }
+                $meta_where_sql = implode( ' OR ', $like_sql_parts );
 
-                foreach ( $posts as $local_post ) {
-                    self::$current_page_data[ $post_type ][ $local_post->ID ] = array(
-                        'id'       => $local_post->ID,
-                        'location' => $local_post->meta_value,
-                    );
+                $sql   = $base_sql . ' AND ( ' . $meta_where_sql . ' )' . $orderby;
+                $posts = $wpdb->get_results( $sql );
+
+                if ( ! empty( $posts ) ) {
+                    foreach ( $posts as $local_post ) {
+                        self::$current_page_data[ $post_type ][ $local_post->ID ] = array(
+                            'id'       => absint( $local_post->ID ),
+                            'location' => maybe_unserialize( $local_post->meta_value ),
+                        );
+                    }
                 }
 
                 $option['current_post_id'] = $current_post_id;
-
                 $this->remove_exclusion_rule_posts( $post_type, $option );
             }
 

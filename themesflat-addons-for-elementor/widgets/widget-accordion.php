@@ -1208,7 +1208,7 @@ class TFAccordion_Widget_Free extends \Elementor\Widget_Base {
 				$html_content = sprintf('<div class="accordion-content">%1$s</div>', do_shortcode( wp_kses_post($value['list_content'] )));
 			}			
 
-			$accordion_item .= sprintf('<div class="tf-accordion-item %3$s">%1$s %2$s</div>', $html_title, $html_content, ($value['set_active']));
+			$accordion_item .= sprintf('<div class="tf-accordion-item %3$s">%1$s %2$s</div>', $html_title, $html_content, esc_attr($value['set_active']));
 		}
 
 
